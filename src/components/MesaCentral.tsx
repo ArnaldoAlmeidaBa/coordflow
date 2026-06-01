@@ -15,12 +15,15 @@ import {
   ChevronUp,
   Briefcase,
   Users,
-  GraduationCap
+  GraduationCap,
+  Pencil,
+  X
 } from 'lucide-react';
 
 interface MesaCentralProps {
   tasks: PendingTask[];
   onAddTask: (task: Omit<PendingTask, 'id' | 'createdAt'>) => void;
+  onUpdateTask: (id: string, updates: Omit<PendingTask, 'id' | 'createdAt'>) => void;
   onToggleTaskStatus: (id: string) => void;
   onDeleteTask: (id: string) => void;
   onAddHistory: (title: string, details: string, actionType: any, category: any) => void;
@@ -29,6 +32,7 @@ interface MesaCentralProps {
 export default function MesaCentral({ 
   tasks, 
   onAddTask, 
+  onUpdateTask,
   onToggleTaskStatus, 
   onDeleteTask,
   onAddHistory
@@ -44,6 +48,12 @@ export default function MesaCentral({
   const [newCategory, setNewCategory] = useState<PendingTask['category']>('geral');
   const [newDeadline, setNewDeadline] = useState('');
   const [newNotes, setNewNotes] = useState('');
+  const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
+  const [editTitle, setEditTitle] = useState('');
+  const [editPriority, setEditPriority] = useState<PendingTask['priority']>('media');
+  const [editCategory, setEditCategory] = useState<PendingTask['category']>('geral');
+  const [editDeadline, setEditDeadline] = useState('');
+  const [editNotes, setEditNotes] = useState('');
 
   // Handle submit new task
   const handleSubmit = (e: React.FormEvent) => {
@@ -106,6 +116,39 @@ export default function MesaCentral({
   const pendingCount = tasks.filter(t => t.status !== 'concluido').length;
   const highPriorityCount = tasks.filter(t => t.status !== 'concluido' && t.priority === 'alta').length;
   const completedCount = tasks.filter(t => t.status === 'concluido').length;
+
+  const handleStartEditTask = (task: PendingTask) => {
+    setEditingTaskId(task.id);
+    setEditTitle(task.title);
+    setEditPriority(task.priority);
+    setEditCategory(task.category);
+    setEditDeadline(task.deadline);
+    setEditNotes(task.notes || '');
+  };
+
+  const handleCancelEditTask = () => {
+    setEditingTaskId(null);
+    setEditTitle('');
+    setEditPriority('media');
+    setEditCategory('geral');
+    setEditDeadline('');
+    setEditNotes('');
+  };
+
+  const handleSaveEditedTask = (task: PendingTask) => {
+    if (!editTitle.trim()) return;
+
+    onUpdateTask(task.id, {
+      title: editTitle.trim(),
+      priority: editPriority,
+      status: task.status,
+      deadline: editDeadline || task.deadline,
+      category: editCategory,
+      notes: editNotes.trim() || undefined
+    });
+
+    handleCancelEditTask();
+  };
 
   return (
     <div className="space-y-6">
@@ -373,13 +416,61 @@ export default function MesaCentral({
                   </button>
 
                   <div className="space-y-1">
-                    <p className={`text-xs sm:text-sm text-slate-800 ${
-                      task.status === 'concluido' ? 'line-through text-slate-400' : 'font-semibold'
-                    }`}>
-                      {task.title}
-                    </p>
+                    {editingTaskId === task.id ? (
+                      <div className="space-y-2 w-full">
+                        <input
+                          type="text"
+                          value={editTitle}
+                          onChange={(e) => setEditTitle(e.target.value)}
+                          className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs text-slate-800"
+                        />
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                          <select
+                            value={editPriority}
+                            onChange={(e) => setEditPriority(e.target.value as PendingTask['priority'])}
+                            className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs text-slate-800"
+                          >
+                            <option value="alta">Alta / Urgente</option>
+                            <option value="media">Média</option>
+                            <option value="baixa">Baixa</option>
+                          </select>
+                          <select
+                            value={editCategory}
+                            onChange={(e) => setEditCategory(e.target.value as PendingTask['category'])}
+                            className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs text-slate-800"
+                          >
+                            <option value="coord">Coordenação</option>
+                            <option value="familia">Família</option>
+                            <option value="professor">Corpo Docente</option>
+                            <option value="direcao">Direção</option>
+                            <option value="aluno">Aluno</option>
+                            <option value="geral">Geral</option>
+                          </select>
+                          <input
+                            type="date"
+                            value={editDeadline}
+                            onChange={(e) => setEditDeadline(e.target.value)}
+                            className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs text-slate-800"
+                          />
+                        </div>
+                        <input
+                          type="text"
+                          value={editNotes}
+                          onChange={(e) => setEditNotes(e.target.value)}
+                          placeholder="Observações"
+                          className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs text-slate-800"
+                        />
+                      </div>
+                    ) : (
+                      <p className={`text-xs sm:text-sm text-slate-800 ${
+                        task.status === 'concluido' ? 'line-through text-slate-400' : 'font-semibold'
+                      }`}>
+                        {task.title}
+                      </p>
+                    )}
                     
                     {/* Meta info block */}
+                    {editingTaskId !== task.id && (
                     <div className="flex flex-wrap items-center gap-2">
                       {/* Priority Tag */}
                       <span className={`text-[10px] font-bold font-mono px-2 py-0.2 rounded border uppercase tracking-wider ${
@@ -403,9 +494,10 @@ export default function MesaCentral({
                         Limite: {task.deadline.split('-').reverse().join('/')}
                       </span>
                     </div>
+                    )}
 
                     {/* Task notes if present */}
-                    {task.notes && (
+                    {editingTaskId !== task.id && task.notes && (
                       <p className={`text-xs p-2.5 bg-[#F9FAFB] border-l border-[#111827] mt-1.5 rounded-r font-sans leading-relaxed ${
                         task.status === 'concluido' ? 'text-slate-400 border-slate-300' : 'text-slate-600'
                       }`}>
@@ -417,7 +509,37 @@ export default function MesaCentral({
 
                 {/* Actions */}
                 <div className="flex items-center space-x-1 flex-shrink-0">
+                  {editingTaskId === task.id ? (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => handleSaveEditedTask(task)}
+                        className="p-1.5 text-emerald-700 hover:bg-emerald-50 rounded transition-colors"
+                        title="Salvar edição"
+                      >
+                        <Check className="w-4 h-4" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleCancelEditTask}
+                        className="p-1.5 text-slate-500 hover:bg-slate-100 rounded transition-colors"
+                        title="Cancelar edição"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => handleStartEditTask(task)}
+                      className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-colors"
+                      title="Editar pendência"
+                    >
+                      <Pencil className="w-4 h-4" />
+                    </button>
+                  )}
                   <button
+                    type="button"
                     onClick={() => {
                       if (confirm(`Remover permanentemente a pendência: "${task.title}"?`)) {
                         onDeleteTask(task.id);

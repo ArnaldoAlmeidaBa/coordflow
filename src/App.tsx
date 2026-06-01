@@ -140,6 +140,22 @@ export default function App() {
     }
   };
 
+  const handleUpdateTask = (id: string, updates: Omit<PendingTask, 'id' | 'createdAt'>) => {
+    const target = tasks.find(t => t.id === id);
+    if (!target) return;
+
+    setTasks(prev => prev.map(t => (
+      t.id === id ? { ...t, ...updates } : t
+    )));
+
+    handleAddNewHistoryItem(
+      'Pendência Editada',
+      `Tarefa atualizada: "${target.title}" -> "${updates.title}". Prazo: ${target.deadline.split('-').reverse().join('/')} -> ${updates.deadline.split('-').reverse().join('/')}.`,
+      'geral',
+      updates.category === 'familia' || updates.category === 'professor' ? (updates.category as any) : 'sistema'
+    );
+  };
+
   const handleAddNewMeeting = (newMeeting: Omit<Meeting, 'id' | 'createdAt'>) => {
     const meeting: Meeting = {
       ...newMeeting,
@@ -371,6 +387,7 @@ export default function App() {
             <MesaCentral
               tasks={tasks}
               onAddTask={handleAddNewTask}
+              onUpdateTask={handleUpdateTask}
               onToggleTaskStatus={handleToggleTaskStatus}
               onDeleteTask={handleDeleteTask}
               onAddHistory={handleAddNewHistoryItem}
