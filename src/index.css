@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Georgia", Cambria, "Times New Roman", Times, serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #F9FAFB; /* Tech dashboard warm/light gray base background */
+  color: #111827; /* Rich black ink */
+}
+
+/* Technical Dashboard Design System Classes */
+.tech-bg-grid {
+  background-color: #F9FAFB;
+}
+
+.tech-card {
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tech-card-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid #E5E7EB;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.tech-card-title {
+  font-family: "Georgia", Cambria, "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+.tech-data-row {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  padding: 12px 16px;
+  border-bottom: 1px solid #F3F4F6;
+  align-items: center;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.15s ease;
+}
+
+.tech-data-row:hover {
+  background: #F9FAFB;
+}
+
+.tech-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+.tech-btn-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #E5E7EB;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  background: #ffffff;
+  color: #4B5563;
+  transition: all 0.2s ease;
+}
+
+.tech-btn-pill:hover {
+  background: #F9FAFB;
+  border-color: #D1D5DB;
+  color: #111827;
+}
+
+.tech-btn-primary {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: none;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  background: #111827;
+  color: #ffffff;
+  transition: background 0.2s ease;
+}
+
+.tech-btn-primary:hover {
+  background: #1F2937;
+}
+
+.tech-badge {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  color: #4B5563;
+  background: #F3F4F6;
+  padding: 2px 6.5px;
+  border-radius: 4px;
+  border: 1px solid #E5E7EB;
+}
+
+/* Custom scrollbar to look sleek */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #E5E7EB;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D1D5DB;
+}

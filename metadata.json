@@ -1,0 +1,6 @@
+{
+  "name": "CoordFlow",
+  "description": "Uma plataforma de produtividade e organização para coordenadores pedagógicos, centralizando comunicações assistidas, pautas de reuniões, pendências e calendário escolar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
