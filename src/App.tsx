@@ -247,6 +247,14 @@ export default function App() {
     setThemeMode(prev => prev === 'dark' ? 'light' : 'dark');
   };
   const ThemeToggleIcon = isDarkMode ? Sun : Moon;
+  const tabItems = [
+    { id: 'mesa', label: 'Mesa Central', icon: LayoutDashboard, badge: pendingActiveCount > 0 ? pendingActiveCount : null, badgeColor: 'bg-rose-100 text-rose-800' },
+    { id: 'comunicacao', label: 'Comunicação Assistida', icon: MessageSquare, badge: 'IA', badgeColor: 'bg-amber-100 text-amber-800 font-mono text-[9px]' },
+    { id: 'reunioes', label: 'Pautas & Reuniões', icon: FileText, badge: null, badgeColor: '' },
+    { id: 'calendario', label: 'Calendário Operacional', icon: CalendarIcon, badge: events.length > 0 ? events.length : null, badgeColor: 'bg-indigo-100 text-indigo-800 font-mono text-[9px]' },
+    { id: 'historico', label: 'Histórico Institucional', icon: HistoryIcon, badge: null, badgeColor: '' },
+  ] as const;
+  const activeTabLabel = tabItems.find(item => item.id === activeTab)?.label ?? 'Mesa Central';
 
   return (
     <div className={`min-h-dvh md:min-h-screen md:flex md:flex-row font-sans app-shell ${isDarkMode ? 'theme-dark' : ''}`}>
@@ -308,13 +316,7 @@ export default function App() {
 
         {/* COMPREHENSIVE SIDE NAVIGATION */}
         <nav className="flex-1 space-y-1">
-          {[
-            { id: 'mesa', label: 'Mesa Central', icon: LayoutDashboard, badge: pendingActiveCount > 0 ? pendingActiveCount : null, badgeColor: 'bg-rose-100 text-rose-800' },
-            { id: 'comunicacao', label: 'Comunicação Assistida', icon: MessageSquare, badge: 'IA', badgeColor: 'bg-amber-100 text-amber-800 font-mono text-[9px]' },
-            { id: 'reunioes', label: 'Pautas & Reuniões', icon: FileText, badge: null, badgeColor: '' },
-            { id: 'calendario', label: 'Calendário Operacional', icon: CalendarIcon, badge: events.length > 0 ? events.length : null, badgeColor: 'bg-indigo-100 text-indigo-800 font-mono text-[9px]' },
-            { id: 'historico', label: 'Histórico Institucional', icon: HistoryIcon, badge: null, badgeColor: '' },
-          ].map(item => {
+          {tabItems.map(item => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             return (
@@ -346,7 +348,7 @@ export default function App() {
         </nav>
 
         {/* BOTTOM METRIC RAIL */}
-        <div className="mt-auto pt-6 border-t border-[#E5E7EB] self-stretch">
+        <div className="mt-auto pt-5 border-t border-[#E5E7EB] self-stretch space-y-4">
           <p className="text-[10px] text-[#6B7280] uppercase tracking-widest font-bold mb-3">Status da Escola</p>
           <div className="space-y-2.5">
             <div className="flex items-center gap-2">
@@ -357,6 +359,39 @@ export default function App() {
               <span className={`w-2 h-2 rounded-full ${pendingActiveCount > 0 ? 'bg-amber-500 animate-pulse' : 'bg-slate-300'}`}></span>
               <span className="text-[11px] font-medium text-slate-700">{pendingActiveCount} Demandas Ativas</span>
             </div>
+          </div>
+        </div>
+        <div className="space-y-2.5 pt-4">
+          <div className="flex items-center justify-between">
+            <p className="text-[9px] text-[#6B7280] uppercase tracking-[0.18em] font-bold">Ferramentas</p>
+            <div className="w-6.5 h-6.5 rounded-full bg-[#111827] text-white flex items-center justify-center text-[10px] font-bold font-mono" title="arnaldodealmeida@gmail.com">
+              CP
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={handleToggleTheme}
+              className="flex items-center justify-center space-x-1.5 px-2 py-2 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[9px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
+              title={isDarkMode ? 'Alternar para tema claro' : 'Alternar para tema escuro'}
+            >
+              <ThemeToggleIcon className="w-3.5 h-3.5" />
+              <span>Tema</span>
+            </button>
+
+            <button
+              onClick={handleFullReset}
+              className="flex items-center justify-center space-x-1.5 px-2 py-2 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[9px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
+            >
+              <RefreshCw className="w-3 h-3" />
+              <span>Reset</span>
+            </button>
+          </div>
+
+          <div className="flex items-center space-x-1.5 text-slate-600 text-[9px] font-mono bg-[#F9FAFB] border border-[#E5E7EB] px-2.5 py-2 rounded-md">
+            <Clock className="w-3 h-3 text-slate-400" />
+            <span>{clockString}</span>
           </div>
         </div>
       </aside>
@@ -372,54 +407,18 @@ export default function App() {
       {/* MAIN CONTENT WINDOW wrapper */}
       <div className="min-w-0 md:flex-1 md:flex md:flex-col md:min-h-0">
         
-        {/* DESKTOP EXCLUSIVE TOP-BAR */}
-        <header className="bg-white border-b border-[#E5E7EB] h-[52px] hidden md:flex items-center justify-between px-6 py-2 z-10 sticky top-0">
-          <div className="flex items-center gap-2 text-[10px] text-[#6B7280] font-semibold tracking-[0.12em] uppercase">
-            <span className="text-[#111827] font-bold">
-              {activeTab === 'mesa' && 'Mesa Central'}
-              {activeTab === 'comunicacao' && 'Comunicação Assistida'}
-              {activeTab === 'reunioes' && 'Reuniões & Pautas'}
-              {activeTab === 'calendario' && 'Calendário Operacional'}
-              {activeTab === 'historico' && 'Histórico Institucional'}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2.5">
-            <button
-              type="button"
-              onClick={handleToggleTheme}
-              className="flex items-center space-x-1.5 px-2.5 py-1.25 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[9px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
-              title={isDarkMode ? 'Alternar para tema claro' : 'Alternar para tema escuro'}
-            >
-              <ThemeToggleIcon className="w-3.5 h-3.5" />
-              <span>{isDarkMode ? 'Modo Escuro' : 'Modo Claro'}</span>
-            </button>
-            
-            {/* Clock */}
-            <div className="flex items-center space-x-1.5 text-slate-600 text-[9px] font-mono bg-[#F9FAFB] border border-[#E5E7EB] px-2 py-1.25 rounded-md">
-              <Clock className="w-3 h-3 text-slate-400" />
-              <span>{clockString}</span>
-            </div>
-
-            {/* Reset */}
-            <button
-              onClick={handleFullReset}
-              className="flex items-center space-x-1.5 px-2.5 py-1.25 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[9px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
-            >
-              <RefreshCw className="w-3 h-3" />
-              <span>Resetar MVP</span>
-            </button>
-
-            {/* Custom user initial badge matching our template design */}
-            <div className="w-7 h-7 rounded-full bg-[#111827] text-white flex items-center justify-center text-[11px] font-bold font-mono" title="arnaldodealmeida@gmail.com">
-              CP
-            </div>
-
-          </div>
-        </header>
 
         {/* CORE SCROLLABLE CONTAINER */}
-        <main className="p-3.5 pb-4 md:flex-1 md:min-h-0 md:p-5 overflow-visible md:overflow-y-auto space-y-4">
+        <main className="p-3.5 pb-4 md:flex-1 md:min-h-0 md:px-5 md:pt-3 md:pb-5 overflow-visible md:overflow-y-auto space-y-3 md:space-y-3.5">
+          <div className="hidden md:flex items-center justify-between gap-4 px-0.5">
+            <div className="min-w-0">
+              <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#8A7258]">Mesa de Trabalho</p>
+              <h2 className="text-sm font-semibold text-[#2C241B] truncate">{activeTabLabel}</h2>
+            </div>
+            <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#8A7258] text-right">
+              Area Util de Coordenacao
+            </p>
+          </div>
           
           {activeTab === 'mesa' && (
             <MesaCentral
@@ -487,4 +486,5 @@ export default function App() {
     </div>
   );
 }
+
 
