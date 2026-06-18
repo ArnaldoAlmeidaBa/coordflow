@@ -249,7 +249,7 @@ export default function App() {
   const ThemeToggleIcon = isDarkMode ? Sun : Moon;
 
   return (
-    <div className={`min-h-dvh md:min-h-screen flex flex-col md:flex-row font-sans app-shell ${isDarkMode ? 'theme-dark' : ''}`}>
+    <div className={`min-h-dvh md:min-h-screen md:flex md:flex-row font-sans app-shell ${isDarkMode ? 'theme-dark' : ''}`}>
       
       {/* MOBILE RATIO BAR */}
       <header className="md:hidden bg-white border-b border-[#E5E7EB] px-4 py-3.5 flex items-center justify-between sticky top-0 z-50">
@@ -369,7 +369,7 @@ export default function App() {
       )}
 
       {/* MAIN CONTENT WINDOW wrapper */}
-      <div className="flex-1 flex flex-col min-w-0 min-h-0">
+      <div className="min-w-0 md:flex-1 md:flex md:flex-col md:min-h-0">
         
         {/* DESKTOP EXCLUSIVE TOP-BAR */}
         <header className="bg-white border-b border-[#E5E7EB] h-[52px] hidden md:flex items-center justify-between px-6 py-2 z-10 sticky top-0">
@@ -418,7 +418,7 @@ export default function App() {
         </header>
 
         {/* CORE SCROLLABLE CONTAINER */}
-        <main className="flex-1 min-h-0 p-3.5 pb-4 md:p-5 overflow-visible md:overflow-y-auto space-y-4">
+        <main className="p-3.5 pb-4 md:flex-1 md:min-h-0 md:p-5 overflow-visible md:overflow-y-auto space-y-4">
           
           {activeTab === 'mesa' && (
             <MesaCentral
