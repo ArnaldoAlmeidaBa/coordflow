@@ -88,3 +88,23 @@ A fase atual do projeto prioriza maturidade sobre proliferacao de modulos.
 
 - novas ideias podem ser registradas;
 - implementacoes futuras devem respeitar a capacidade operacional atual do sistema.
+
+---
+
+## 2026-06-18 - Paleta visual experimental em eixo ocre/madeira
+
+### Decisao
+
+Foi criada uma variacao experimental, sutil e reversivel da paleta visual do Coordena, deslocando a base cromatica de tons frios para um eixo mais quente, ligado a ocre, amarelo claro e referencias de madeira.
+
+### Motivacao
+
+- testar uma atmosfera mais acolhedora e organica;
+- aproximar a experiencia visual do conceito de habitat de coordenacao humana;
+- experimentar mudanca identitaria sem romper a legibilidade e a estabilidade atual.
+
+### Implicacoes
+
+- a mudanca foi isolada em commit proprio para avaliacao;
+- a experiencia pode ser revertida com baixo risco caso nao agrade;
+- a avaliacao deve considerar sensacao de acolhimento, contraste e clareza operacional.

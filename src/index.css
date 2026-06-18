@@ -8,35 +8,35 @@
 }
 
 :root {
-  --app-bg: #f5f7fb;
-  --app-surface: #ffffff;
-  --app-surface-muted: #f9fafb;
-  --app-surface-subtle: #f3f4f6;
-  --app-surface-hover: #eef2f7;
-  --app-border: #e5e7eb;
-  --app-border-strong: #d1d5db;
-  --app-text: #111827;
-  --app-text-muted: #6b7280;
-  --app-text-soft: #94a3b8;
-  --app-accent: #4f46e5;
-  --app-accent-deep: #111827;
-  --app-accent-soft: rgba(79, 70, 229, 0.1);
+  --app-bg: #f6f1e8;
+  --app-surface: #fffaf2;
+  --app-surface-muted: #f7f0e5;
+  --app-surface-subtle: #efe4d1;
+  --app-surface-hover: #eadfce;
+  --app-border: #dccfb7;
+  --app-border-strong: #c8b795;
+  --app-text: #2f2418;
+  --app-text-muted: #7a684f;
+  --app-text-soft: #a08c73;
+  --app-accent: #a9752d;
+  --app-accent-deep: #7a4f1a;
+  --app-accent-soft: rgba(169, 117, 45, 0.12);
 }
 
 [data-theme="dark"] {
-  --app-bg: #0b1220;
-  --app-surface: #111827;
-  --app-surface-muted: #172033;
-  --app-surface-subtle: #1e293b;
-  --app-surface-hover: #253247;
-  --app-border: #2b394f;
-  --app-border-strong: #3a4a63;
-  --app-text: #e5eefb;
-  --app-text-muted: #9fb0c7;
-  --app-text-soft: #74859f;
-  --app-accent: #818cf8;
-  --app-accent-deep: #4338ca;
-  --app-accent-soft: rgba(129, 140, 248, 0.16);
+  --app-bg: #19140f;
+  --app-surface: #241d16;
+  --app-surface-muted: #2d241b;
+  --app-surface-subtle: #382d21;
+  --app-surface-hover: #453626;
+  --app-border: #5b4835;
+  --app-border-strong: #766048;
+  --app-text: #f2e5cf;
+  --app-text-muted: #cab597;
+  --app-text-soft: #9f896a;
+  --app-accent: #d3a35e;
+  --app-accent-deep: #9a6323;
+  --app-accent-soft: rgba(211, 163, 94, 0.18);
 }
 
 body {
@@ -48,8 +48,9 @@ body {
 
 .app-shell {
   background:
-    radial-gradient(circle at top right, rgba(79, 70, 229, 0.08), transparent 28%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0)),
+    radial-gradient(circle at top right, rgba(169, 117, 45, 0.08), transparent 28%),
+    radial-gradient(circle at top left, rgba(214, 183, 118, 0.08), transparent 20%),
+    linear-gradient(180deg, rgba(255, 250, 242, 0.68), rgba(255, 250, 242, 0)),
     var(--app-bg);
   color: var(--app-text);
   transition: background 0.25s ease, color 0.25s ease;
@@ -57,9 +58,9 @@ body {
 
 [data-theme="dark"] .app-shell {
   background:
-    radial-gradient(circle at top right, rgba(129, 140, 248, 0.16), transparent 26%),
-    radial-gradient(circle at top left, rgba(14, 165, 233, 0.08), transparent 22%),
-    linear-gradient(180deg, rgba(148, 163, 184, 0.04), rgba(148, 163, 184, 0)),
+    radial-gradient(circle at top right, rgba(211, 163, 94, 0.16), transparent 26%),
+    radial-gradient(circle at top left, rgba(143, 94, 38, 0.14), transparent 24%),
+    linear-gradient(180deg, rgba(242, 229, 207, 0.03), rgba(242, 229, 207, 0)),
     var(--app-bg);
 }
 
@@ -75,7 +76,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 14px 34px rgba(84, 58, 25, 0.07);
   backdrop-filter: blur(12px);
 }
 
@@ -154,6 +155,55 @@ body {
 
 .tech-btn-primary:hover {
   background: color-mix(in srgb, var(--app-accent-deep) 88%, white 12%);
+}
+
+.bg-white {
+  background-color: var(--app-surface) !important;
+}
+
+.bg-\[\#F9FAFB\] {
+  background-color: var(--app-bg) !important;
+}
+
+.border-\[\#E5E7EB\] {
+  border-color: var(--app-border) !important;
+}
+
+.text-\[\#111827\] {
+  color: var(--app-text) !important;
+}
+
+.text-\[\#6B7280\],
+.text-\[\#4B5563\] {
+  color: var(--app-text-muted) !important;
+}
+
+.bg-\[\#111827\],
+.bg-slate-800,
+.bg-slate-900 {
+  background-color: var(--app-accent-deep) !important;
+}
+
+.bg-\[\#EEF2FF\],
+.bg-indigo-50,
+.bg-indigo-50\/50 {
+  background-color: var(--app-accent-soft) !important;
+}
+
+.text-\[\#4F46E5\],
+.text-indigo-900,
+.text-indigo-800,
+.text-indigo-700,
+.text-indigo-600,
+.text-indigo-500 {
+  color: var(--app-accent) !important;
+}
+
+.border-indigo-100,
+.border-indigo-150,
+.border-indigo-200,
+.border-indigo-400 {
+  border-color: color-mix(in srgb, var(--app-accent) 30%, var(--app-surface)) !important;
 }
 
 .tech-badge {
