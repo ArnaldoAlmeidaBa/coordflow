@@ -342,8 +342,8 @@ export default function App() {
       <div className="flex-1 flex flex-col min-w-0">
         
         {/* DESKTOP EXCLUSIVE TOP-BAR */}
-        <header className="bg-white border-b border-[#E5E7EB] h-[60px] hidden md:flex items-center justify-between px-8 py-3.5 z-10 sticky top-0">
-          <div className="flex items-center gap-2 text-xs text-[#6B7280] font-semibold tracking-wider uppercase">
+        <header className="bg-white border-b border-[#E5E7EB] h-[52px] hidden md:flex items-center justify-between px-6 py-2 z-10 sticky top-0">
+          <div className="flex items-center gap-2 text-[10px] text-[#6B7280] font-semibold tracking-[0.12em] uppercase">
             <span>Unidade Centro</span>
             <span className="text-slate-300">/</span>
             <span className="text-[#111827] font-bold">
@@ -355,25 +355,25 @@ export default function App() {
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2.5">
             
             {/* Clock */}
-            <div className="flex items-center space-x-2 text-slate-600 text-[11px] font-mono bg-[#F9FAFB] border border-[#E5E7EB] px-3 py-1.5 rounded-md">
-              <Clock className="w-3.5 h-3.5 text-slate-400" />
+            <div className="flex items-center space-x-1.5 text-slate-600 text-[9px] font-mono bg-[#F9FAFB] border border-[#E5E7EB] px-2 py-1.25 rounded-md">
+              <Clock className="w-3 h-3 text-slate-400" />
               <span>{clockString}</span>
             </div>
 
             {/* Reset */}
             <button
               onClick={handleFullReset}
-              className="flex items-center space-x-1.5 px-3 py-1.5 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[11px] font-semibold uppercase tracking-wider transition-all bg-white"
+              className="flex items-center space-x-1.5 px-2.5 py-1.25 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[9px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
             >
               <RefreshCw className="w-3 h-3" />
               <span>Resetar MVP</span>
             </button>
 
             {/* Custom user initial badge matching our template design */}
-            <div className="w-8 h-8 rounded-full bg-[#111827] text-white flex items-center justify-center text-xs font-bold font-mono" title="arnaldodealmeida@gmail.com">
+            <div className="w-7 h-7 rounded-full bg-[#111827] text-white flex items-center justify-center text-[11px] font-bold font-mono" title="arnaldodealmeida@gmail.com">
               CP
             </div>
 
@@ -381,7 +381,7 @@ export default function App() {
         </header>
 
         {/* CORE SCROLLABLE CONTAINER */}
-        <main className="flex-grow p-4 md:p-8 overflow-y-auto space-y-6">
+        <main className="flex-grow p-4 md:p-5 overflow-y-auto space-y-4">
           
           {activeTab === 'mesa' && (
             <MesaCentral

@@ -151,49 +151,49 @@ export default function MesaCentral({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3.5 md:space-y-4">
       {/* Dynamic Summary Cards to anchor context */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div id="stat-pending" className="tech-card p-5 bg-white">
-          <div className="flex justify-between items-center pb-2 border-b border-slate-100 mb-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+        <div id="stat-pending" className="tech-card bg-white px-3.5 py-3 [&_.tech-card-title]:text-[10px] [&_.tech-card-title]:tracking-[0.025em] [&_.tech-badge]:text-[8px] [&_.tech-badge]:px-1.5 [&_.tech-badge]:py-0.5">
+          <div className="flex justify-between items-center pb-1 border-b border-slate-100 mb-2">
             <span className="tech-card-title">Pendências Ativas</span>
             <span className="tech-badge">Monitorado</span>
           </div>
           <div className="flex items-center justify-between">
-            <h4 className="text-3xl font-extrabold text-slate-900 mt-1 tracking-tight font-sans">{pendingCount}</h4>
-            <div className="p-2 bg-indigo-50 text-indigo-600 rounded">
-              <Clock className="w-5 h-5" />
+            <h4 className="text-2xl font-extrabold text-slate-900 tracking-tight font-sans">{pendingCount}</h4>
+            <div className="p-1.5 bg-indigo-50 text-indigo-600 rounded">
+              <Clock className="w-4 h-4" />
             </div>
           </div>
         </div>
 
-        <div id="stat-high" className="tech-card p-5 bg-white">
-          <div className="flex justify-between items-center pb-2 border-b border-slate-100 mb-3">
+        <div id="stat-high" className="tech-card bg-white px-3.5 py-3 [&_.tech-card-title]:text-[10px] [&_.tech-card-title]:tracking-[0.025em] [&_.tech-badge]:text-[8px] [&_.tech-badge]:px-1.5 [&_.tech-badge]:py-0.5 [&_span.uppercase]:text-[7px] [&_span.uppercase]:py-0.5">
+          <div className="flex justify-between items-center pb-1 border-b border-slate-100 mb-2">
             <span className="tech-card-title">Urgências Críticas</span>
             <span className="tech-badge bg-rose-50 text-rose-700 border-rose-100">Alto Risco</span>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-baseline space-x-2">
-              <h4 className="text-3xl font-extrabold text-slate-900 mt-1 tracking-tight">{highPriorityCount}</h4>
+              <h4 className="text-2xl font-extrabold text-slate-900 tracking-tight">{highPriorityCount}</h4>
               {highPriorityCount > 0 && (
                 <span className="text-[9px] font-mono font-bold bg-rose-100 text-rose-800 px-1.5 py-0.2 rounded uppercase animate-pulse">Atenção</span>
               )}
             </div>
-            <div className={`p-2 rounded ${highPriorityCount > 0 ? 'bg-rose-50 text-rose-600' : 'bg-slate-50 text-slate-400'}`}>
-              <AlertCircle className="w-5 h-5" />
+            <div className={`p-1.5 rounded ${highPriorityCount > 0 ? 'bg-rose-50 text-rose-600' : 'bg-slate-50 text-slate-400'}`}>
+              <AlertCircle className="w-4 h-4" />
             </div>
           </div>
         </div>
 
-        <div id="stat-completed" className="tech-card p-5 bg-white">
-          <div className="flex justify-between items-center pb-2 border-b border-slate-100 mb-3">
+        <div id="stat-completed" className="tech-card bg-white px-3.5 py-3 [&_.tech-card-title]:text-[10px] [&_.tech-card-title]:tracking-[0.025em] [&_.tech-badge]:text-[8px] [&_.tech-badge]:px-1.5 [&_.tech-badge]:py-0.5">
+          <div className="flex justify-between items-center pb-1 border-b border-slate-100 mb-2">
             <span className="tech-card-title">Concluídas Hoje</span>
             <span className="tech-badge bg-emerald-50 text-emerald-800 border-emerald-100">Meta</span>
           </div>
           <div className="flex items-center justify-between">
-            <h4 className="text-3xl font-extrabold text-slate-900 mt-1 tracking-tight">{completedCount}</h4>
-            <div className="p-2 bg-emerald-50 text-emerald-600 rounded">
-              <CheckCircle2 className="w-5 h-5" />
+            <h4 className="text-2xl font-extrabold text-slate-900 tracking-tight">{completedCount}</h4>
+            <div className="p-1.5 bg-emerald-50 text-emerald-600 rounded">
+              <CheckCircle2 className="w-4 h-4" />
             </div>
           </div>
         </div>
@@ -202,7 +202,7 @@ export default function MesaCentral({
       {/* Main Panel Content split into actions + list */}
       <div className="tech-card">
         {/* Header controller */}
-        <div className="tech-card-header bg-white">
+        <div className="tech-card-header bg-white px-3.5 py-2.5 [&_.tech-card-title]:text-[10px] [&_.tech-card-title]:tracking-[0.025em] [&_.tech-badge]:text-[8px] [&_.tech-btn-primary]:px-3.5 [&_.tech-btn-primary]:py-1.25 [&_.tech-btn-primary]:text-[9px]">
           <div className="flex items-center space-x-2">
             <span className="tech-card-title">Mesa Operacional de Pendências</span>
             <span className="tech-badge">{filteredTasks.length} Exibidas</span>
@@ -218,13 +218,13 @@ export default function MesaCentral({
         </div>
 
         {/* Action subtitle banner */}
-        <div className="px-5 py-3.5 bg-slate-50 border-b border-slate-150 text-xs text-slate-500 font-sans">
+        <div className="px-3.5 py-2 bg-slate-50 border-b border-slate-150 text-[10px] text-slate-500 font-sans">
           Acompanhamento e rastreio de demandas imediatas de suporte pedagógico na unidade.
         </div>
 
         {/* Collapsible Action Add-Form Widget */}
         {isFormOpen && (
-          <form id="new-task-form" onSubmit={handleSubmit} className="p-6 bg-[#F9FAFB] border-b border-slate-200 space-y-4">
+          <form id="new-task-form" onSubmit={handleSubmit} className="p-4 bg-[#F9FAFB] border-b border-slate-200 space-y-3.5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">O que precisa ser feito? *</label>
@@ -312,7 +312,7 @@ export default function MesaCentral({
         )}
 
         {/* Filters and search controller */}
-        <div className="p-4 border-b border-light pb-4 flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4 bg-slate-50/50">
+        <div className="p-3 border-b border-light flex flex-col xl:flex-row xl:items-center xl:justify-between gap-2.5 bg-slate-50/50 [&_.tech-btn-pill]:px-2.5 [&_.tech-btn-pill]:py-1.25 [&_.tech-btn-pill]:text-[9px]">
           {/* Quick search input */}
           <div className="relative flex-1 max-w-sm">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -321,13 +321,13 @@ export default function MesaCentral({
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Fórmula de busca de pendência..."
-              className="w-full pl-9 pr-3 py-1.5 bg-white border border-slate-250 rounded-lg text-xs font-sans text-slate-850 focus:outline-hidden"
+              className="w-full pl-8.5 pr-3 py-1.25 bg-white border border-slate-250 rounded-lg text-[10px] font-sans text-slate-850 focus:outline-hidden"
             />
           </div>
 
           {/* Filtering buttons */}
           <div className="flex flex-wrap items-center gap-2">
-            <div className="flex items-center space-x-1.5 text-xs font-mono text-slate-400 font-bold uppercase mr-1">
+            <div className="flex items-center space-x-1.5 text-[9px] font-mono text-slate-400 font-bold uppercase mr-1">
               <Filter className="w-3.5 h-3.5 text-slate-400" />
               <span>Público:</span>
             </div>
@@ -373,7 +373,7 @@ export default function MesaCentral({
             <select
               value={selectedPriority}
               onChange={(e) => setSelectedPriority(e.target.value)}
-              className="px-3 py-1 text-xs bg-white text-slate-600 border border-slate-250 rounded focus:outline-hidden"
+              className="px-2.5 py-1 text-[10px] bg-white text-slate-600 border border-slate-250 rounded focus:outline-hidden"
             >
               <option value="todos">Todas as Prioridades</option>
               <option value="alta">Apenas Alta / Urgente</option>
