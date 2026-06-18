@@ -19,7 +19,7 @@ Principais ajustes:
 - reducao de paddings e gaps do conteudo principal;
 - reducao de altura, icones e tipografia dos cards-resumo;
 - reducao das fontes em caixa alta nos titulos, badges e filtros;
-- compactacao do cabecalho da secao "Mesa Operacional de Pendencias".
+- compactacao do cabecalho da secao "Mesa Operacional de Demandas".
 
 Arquivos principais:
 - `src/App.tsx`
@@ -68,7 +68,7 @@ Observacao:
 
 1. `fadb002` - `chore(branding): renomear app e escola`
 2. `07cf33c` - `style(mesa): compactar cabecalho e indicadores`
-3. `3e638ad` - `feat(mesa): permitir edicao de pendencias registradas`
+3. `3e638ad` - `feat(mesa): permitir edicao de demandas registradas`
 
 ## Proximo passo sugerido
 

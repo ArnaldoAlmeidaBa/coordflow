@@ -156,7 +156,7 @@ export default function MesaCentral({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
         <div id="stat-pending" className="tech-card bg-white px-3.5 py-3 [&_.tech-card-title]:text-[10px] [&_.tech-card-title]:tracking-[0.025em] [&_.tech-badge]:text-[8px] [&_.tech-badge]:px-1.5 [&_.tech-badge]:py-0.5">
           <div className="flex justify-between items-center pb-1 border-b border-slate-100 mb-2">
-            <span className="tech-card-title">Pendências Ativas</span>
+            <span className="tech-card-title">Demandas Ativas</span>
             <span className="tech-badge">Monitorado</span>
           </div>
           <div className="flex items-center justify-between">
@@ -204,7 +204,7 @@ export default function MesaCentral({
         {/* Header controller */}
         <div className="tech-card-header bg-white px-3.5 py-2.5 [&_.tech-card-title]:text-[10px] [&_.tech-card-title]:tracking-[0.025em] [&_.tech-badge]:text-[8px] [&_.tech-btn-primary]:px-3.5 [&_.tech-btn-primary]:py-1.25 [&_.tech-btn-primary]:text-[9px]">
           <div className="flex items-center space-x-2">
-            <span className="tech-card-title">Mesa Operacional de Pendências</span>
+            <span className="tech-card-title">Mesa Operacional de Demandas</span>
             <span className="tech-badge">{filteredTasks.length} Exibidas</span>
           </div>
           <button
@@ -213,7 +213,7 @@ export default function MesaCentral({
             className="tech-btn-primary flex items-center space-x-1"
           >
             <Plus className="w-3.5 h-3.5" />
-            <span>{isFormOpen ? 'Fechar Cadastro' : 'Cadastrar Pendência'}</span>
+            <span>{isFormOpen ? 'Fechar Cadastro' : 'Cadastrar Demanda'}</span>
           </button>
         </div>
 
@@ -320,7 +320,7 @@ export default function MesaCentral({
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Fórmula de busca de pendência..."
+              placeholder="Buscar demanda..."
               className="w-full pl-8.5 pr-3 py-1.25 bg-white border border-slate-250 rounded-lg text-[10px] font-sans text-slate-850 focus:outline-hidden"
             />
           </div>
@@ -533,7 +533,7 @@ export default function MesaCentral({
                       type="button"
                       onClick={() => handleStartEditTask(task)}
                       className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-colors"
-                      title="Editar pendência"
+                      title="Editar demanda"
                     >
                       <Pencil className="w-4 h-4" />
                     </button>
@@ -541,12 +541,12 @@ export default function MesaCentral({
                   <button
                     type="button"
                     onClick={() => {
-                      if (confirm(`Remover permanentemente a pendência: "${task.title}"?`)) {
+                      if (confirm(`Remover permanentemente a demanda: "${task.title}"?`)) {
                         onDeleteTask(task.id);
                       }
                     }}
                     className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded transition-colors"
-                    title="Excluir pendência"
+                    title="Excluir demanda"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -559,7 +559,7 @@ export default function MesaCentral({
         {/* Quick reminder help footer */}
         <div className="p-4 bg-[#F9FAFB] border-t border-slate-150 flex items-center space-x-2 text-xs text-slate-500 font-sans">
           <Info className="w-4 h-4 text-slate-400 flex-shrink-0" />
-          <span>Filtre as pendências acima por tipo de público para agilizar o contato através do módulo **Comunicação Assistida**!</span>
+          <span>Filtre as demandas acima por tipo de público para agilizar o contato através do módulo **Comunicação Assistida**!</span>
         </div>
       </div>
     </div>

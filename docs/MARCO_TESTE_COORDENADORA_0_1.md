@@ -23,7 +23,7 @@ Não é momento de:
 ## Escopo funcional mantido para o teste
 
 - Mesa Central;
-- criação e conclusão de pendências;
+- criação e conclusão de demandas;
 - Pautas & Reuniões;
 - encaminhamentos;
 - Histórico Institucional.

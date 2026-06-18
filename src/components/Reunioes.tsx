@@ -594,7 +594,7 @@ export default function Reunioes({
                 <div id="selected-meeting-actions" className="space-y-2">
                   {activeMeeting.actionItems.length === 0 ? (
                     <div className="p-4 bg-slate-50 text-center rounded text-xs text-slate-400 font-sans">
-                      Nenhum encaminhamento ou pendência registrada para esta ata.
+                      Nenhum encaminhamento ou demanda registrada para esta ata.
                     </div>
                   ) : (
                     activeMeeting.actionItems.map(item => (

@@ -26,10 +26,17 @@ import {
   Clock,
   Sparkles,
   Menu,
+  Moon,
+  Sun,
   X
 } from 'lucide-react';
 
 export default function App() {
+  const getPreferredTheme = (): 'light' | 'dark' => {
+    if (typeof window === 'undefined') return 'light';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+
   const readStoredState = <T,>(key: string, fallback: T): T => {
     try {
       const saved = localStorage.getItem(key);
@@ -42,6 +49,7 @@ export default function App() {
 
   const [activeTab, setActiveTab] = useState<'mesa' | 'comunicacao' | 'reunioes' | 'calendario' | 'historico'>('mesa');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [themeMode, setThemeMode] = useState<'light' | 'dark'>(() => readStoredState('coordflow_theme', getPreferredTheme()));
 
   // Unified State with fallback persistence
   const [tasks, setTasks] = useState<PendingTask[]>(() => readStoredState('coordflow_tasks', INITIAL_TASKS));
@@ -68,6 +76,12 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('coordflow_history', JSON.stringify(historyItems));
   }, [historyItems]);
+
+  useEffect(() => {
+    localStorage.setItem('coordflow_theme', JSON.stringify(themeMode));
+    document.documentElement.dataset.theme = themeMode;
+    document.documentElement.style.colorScheme = themeMode;
+  }, [themeMode]);
 
   // Current DateTime tracker formatted elegantly under localized standards
   const [clockString, setClockString] = useState('2026-05-31 14:29');
@@ -149,7 +163,7 @@ export default function App() {
     )));
 
     handleAddNewHistoryItem(
-      'Pendência Editada',
+      'Demanda Editada',
       `Tarefa atualizada: "${target.title}" -> "${updates.title}". Prazo: ${target.deadline.split('-').reverse().join('/')} -> ${updates.deadline.split('-').reverse().join('/')}.`,
       'geral',
       updates.category === 'familia' || updates.category === 'professor' ? (updates.category as any) : 'sistema'
@@ -230,9 +244,14 @@ export default function App() {
   };
 
   const pendingActiveCount = tasks.filter(t => t.status !== 'concluido').length;
+  const isDarkMode = themeMode === 'dark';
+  const handleToggleTheme = () => {
+    setThemeMode(prev => prev === 'dark' ? 'light' : 'dark');
+  };
+  const ThemeToggleIcon = isDarkMode ? Sun : Moon;
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB] flex flex-col md:flex-row font-sans text-[#111827]">
+    <div className={`min-h-screen flex flex-col md:flex-row font-sans app-shell ${isDarkMode ? 'theme-dark' : ''}`}>
       
       {/* MOBILE RATIO BAR */}
       <header className="md:hidden bg-white border-b border-[#E5E7EB] px-4 py-3.5 flex items-center justify-between sticky top-0 z-50">
@@ -245,12 +264,22 @@ export default function App() {
             <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.2 ml-2 border rounded font-mono font-bold uppercase">v1.0</span>
           </div>
         </div>
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-1.5 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors"
-        >
-          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <div className="flex items-center space-x-2">
+          <button
+            type="button"
+            onClick={handleToggleTheme}
+            className="flex items-center justify-center w-10 h-10 rounded-lg border border-[#E5E7EB] text-slate-600 hover:bg-slate-50 transition-colors bg-white"
+            title={isDarkMode ? 'Ativar tema claro' : 'Ativar tema escuro'}
+          >
+            <ThemeToggleIcon className="w-4.5 h-4.5" />
+          </button>
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-1.5 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors"
+          >
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </header>
 
       {/* COMPANION SIDEBAR */}
@@ -323,7 +352,7 @@ export default function App() {
             </div>
             <div className="flex items-center gap-2">
               <span className={`w-2 h-2 rounded-full ${pendingActiveCount > 0 ? 'bg-amber-500 animate-pulse' : 'bg-slate-300'}`}></span>
-              <span className="text-[11px] font-medium text-slate-700">{pendingActiveCount} Pendências Ativas</span>
+              <span className="text-[11px] font-medium text-slate-700">{pendingActiveCount} Demandas Ativas</span>
             </div>
           </div>
         </div>
@@ -353,6 +382,15 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-2.5">
+            <button
+              type="button"
+              onClick={handleToggleTheme}
+              className="flex items-center space-x-1.5 px-2.5 py-1.25 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[9px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
+              title={isDarkMode ? 'Alternar para tema claro' : 'Alternar para tema escuro'}
+            >
+              <ThemeToggleIcon className="w-3.5 h-3.5" />
+              <span>{isDarkMode ? 'Modo Escuro' : 'Modo Claro'}</span>
+            </button>
             
             {/* Clock */}
             <div className="flex items-center space-x-1.5 text-slate-600 text-[9px] font-mono bg-[#F9FAFB] border border-[#E5E7EB] px-2 py-1.25 rounded-md">
