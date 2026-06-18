@@ -241,7 +241,7 @@ export default function App() {
             <School className="w-5 h-5" />
           </div>
           <div>
-            <span className="font-extrabold text-sm text-[#111827] tracking-tight">CoordFlow</span>
+            <span className="font-extrabold text-sm text-[#111827] tracking-tight">Coordena</span>
             <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.2 ml-2 border rounded font-mono font-bold uppercase">v1.0</span>
           </div>
         </div>
@@ -265,13 +265,12 @@ export default function App() {
               <School className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-lg font-extrabold tracking-tight text-[#111827] leading-tight">CoordFlow</h1>
+              <h1 className="text-lg font-extrabold tracking-tight text-[#111827] leading-tight">Coordena</h1>
               <p className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase mt-0.5">Gestão Pedagógica</p>
             </div>
           </div>
-          <p className="text-[10px] text-[#6B7280] mt-3 font-semibold font-mono border-t border-slate-100 pt-1.5 flex items-center justify-between">
-            <span>Escola Novo Horizonte</span>
-            <span className="bg-slate-100 px-1 py-0.2 text-[8px] rounded uppercase font-bold">Unidade Centro</span>
+          <p className="text-[10px] text-[#6B7280] mt-3 font-semibold font-mono border-t border-slate-100 pt-1.5">
+            <span>CETI - Ibicoara</span>
           </p>
         </div>
 
@@ -344,8 +343,6 @@ export default function App() {
         {/* DESKTOP EXCLUSIVE TOP-BAR */}
         <header className="bg-white border-b border-[#E5E7EB] h-[52px] hidden md:flex items-center justify-between px-6 py-2 z-10 sticky top-0">
           <div className="flex items-center gap-2 text-[10px] text-[#6B7280] font-semibold tracking-[0.12em] uppercase">
-            <span>Unidade Centro</span>
-            <span className="text-slate-300">/</span>
             <span className="text-[#111827] font-bold">
               {activeTab === 'mesa' && 'Mesa Central'}
               {activeTab === 'comunicacao' && 'Comunicação Assistida'}
@@ -434,12 +431,12 @@ export default function App() {
         <footer className="bg-white border-t border-[#E5E7EB] py-4.5 text-slate-500 text-xs px-8">
           <div className="text-center flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="font-mono text-[11px] text-[#6B7280]">
-              CoordFlow • Camada Inteligente e Leve de Apoio Operacional ao Coordenador Pedagógico.
+              Coordena • Camada Inteligente e Leve de Apoio Operacional ao Coordenador Pedagógico.
             </p>
             <div className="flex items-center space-x-3.5 text-[#6B7280] text-[11px] font-semibold uppercase tracking-wider">
               <span>Alívio Operacional</span>
               <span>•</span>
-              <span className="text-[#4F46E5]">Escola Novo Horizonte</span>
+              <span className="text-[#4F46E5]">CETI - Ibicoara</span>
             </div>
           </div>
         </footer>
@@ -449,3 +446,4 @@ export default function App() {
     </div>
   );
 }
+
