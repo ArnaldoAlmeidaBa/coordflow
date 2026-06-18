@@ -12,6 +12,7 @@ import ComunicacaoAssistida from './components/ComunicacaoAssistida';
 import Reunioes from './components/Reunioes';
 import Calendario from './components/Calendario';
 import Historico from './components/Historico';
+import coordenaLogoMark from './assets/coordena-logo-mark.png';
 
 // Icons
 import { 
@@ -20,11 +21,8 @@ import {
   FileText, 
   Calendar as CalendarIcon, 
   History as HistoryIcon,
-  GraduationCap,
-  School,
   RefreshCw,
   Clock,
-  Sparkles,
   Menu,
   Moon,
   Sun,
@@ -256,9 +254,11 @@ export default function App() {
       {/* MOBILE RATIO BAR */}
       <header className="md:hidden bg-white border-b border-[#E5E7EB] px-4 py-3.5 flex items-center justify-between sticky top-0 z-50">
         <div className="flex items-center space-x-2.5">
-          <div className="p-2 bg-[#111827] rounded text-white">
-            <School className="w-5 h-5" />
-          </div>
+          <img
+            src={coordenaLogoMark}
+            alt="Logo do Coordena"
+            className="w-10 h-10 object-contain rounded-lg bg-white p-0.5 shadow-xs"
+          />
           <div>
             <span className="font-extrabold text-sm text-[#111827] tracking-tight">Coordena</span>
             <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.2 ml-2 border rounded font-mono font-bold uppercase">v1.0</span>
@@ -290,9 +290,11 @@ export default function App() {
         {/* LOGO AREA */}
         <div className="mb-8 select-none">
           <div className="flex items-center space-x-2.5">
-            <div className="p-2.5 bg-[#111827] rounded-lg text-white shadow-xs">
-              <School className="w-5 h-5" />
-            </div>
+            <img
+              src={coordenaLogoMark}
+              alt="Logo do Coordena"
+              className="w-12 h-12 object-contain rounded-xl bg-white p-1 shadow-xs"
+            />
             <div>
               <h1 className="text-lg font-extrabold tracking-tight text-[#111827] leading-tight">Coordena</h1>
               <p className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase mt-0.5">Gestão Pedagógica</p>

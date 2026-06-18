@@ -234,6 +234,7 @@ body {
 }
 
 .theme-dark .text-\[\#6B7280\],
+.theme-dark .text-\[\#4B5563\],
 .theme-dark .text-slate-600,
 .theme-dark .text-slate-550,
 .theme-dark .text-slate-500 {
@@ -247,6 +248,7 @@ body {
   color: var(--app-text-soft) !important;
 }
 
+.theme-dark .hover\:bg-\[\#F9FAFB\]:hover,
 .theme-dark .hover\:bg-slate-50:hover,
 .theme-dark .hover\:bg-slate-100:hover {
   background-color: var(--app-surface-hover) !important;
