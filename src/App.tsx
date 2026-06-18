@@ -284,8 +284,9 @@ export default function App() {
 
       {/* COMPANION SIDEBAR */}
       <aside className={`
-        fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-[#E5E7EB] flex flex-col p-6 transform transition-transform duration-300 md:translate-x-0 md:static md:h-screen sticky md:top-0
-        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+        w-64 bg-white border-r border-[#E5E7EB] p-6 transition-transform duration-300
+        ${isMobileMenuOpen ? 'fixed inset-y-0 left-0 z-40 flex flex-col' : 'hidden'}
+        md:sticky md:top-0 md:z-auto md:flex md:h-screen md:flex-col
       `}>
         {/* LOGO AREA */}
         <div className="mb-8 select-none">
