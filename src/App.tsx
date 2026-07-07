@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { 
   INITIAL_TASKS, 
   INITIAL_EVENTS, 
@@ -416,7 +416,7 @@ export default function App() {
               <h2 className="text-sm font-semibold text-[#2C241B] truncate">{activeTabLabel}</h2>
             </div>
             <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#8A7258] text-right">
-              Area Util de Coordenacao
+              Área Útil de Coordenação
             </p>
           </div>
           
@@ -486,5 +486,6 @@ export default function App() {
     </div>
   );
 }
+
 
 

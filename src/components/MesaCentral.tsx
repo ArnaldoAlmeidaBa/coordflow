@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+ï»¿import React, { useState } from 'react';
 import { PendingTask } from '../types';
 import { 
   Clock, 
@@ -89,10 +89,10 @@ export default function MesaCentral({
   // Category label helper
   const getCategoryLabel = (cat: PendingTask['category']) => {
     switch(cat) {
-      case 'coord': return 'Coordenação';
-      case 'familia': return 'Família';
+      case 'coord': return 'CoordenaÃ§Ã£o';
+      case 'familia': return 'FamÃ­lia';
       case 'professor': return 'Corpo Docente';
-      case 'direcao': return 'Direção';
+      case 'direcao': return 'DireÃ§Ã£o';
       case 'aluno': return 'Aluno';
       default: return 'Geral';
     }
@@ -165,7 +165,7 @@ export default function MesaCentral({
 
         {/* Action subtitle banner */}
         <div className="px-3.5 py-2 bg-slate-50 border-b border-slate-150 text-[10px] text-slate-500 font-sans">
-          Acompanhamento e rastreio de demandas imediatas de suporte pedagógico na unidade.
+          Acompanhamento e rastreio de demandas imediatas de suporte pedagÃ³gico na unidade.
         </div>
 
         {/* Collapsible Action Add-Form Widget */}
@@ -179,7 +179,7 @@ export default function MesaCentral({
                   required
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  placeholder="Ex: Ligar para responsáveis da Sofia (9º Ano) sobre notas de física..."
+                  placeholder="Ex: Ligar para responsÃ¡veis da Sofia (9Âº Ano) sobre notas de fÃ­sica..."
                   className="w-full px-3 py-2 bg-white border border-slate-250 rounded text-xs focus:outline-hidden focus:ring-1 focus:ring-indigo-500 text-[#111827]"
                 />
               </div>
@@ -203,7 +203,7 @@ export default function MesaCentral({
                     className="w-full px-3 py-2 bg-white border border-slate-250 rounded text-xs focus:outline-hidden focus:ring-1 focus:ring-indigo-500 text-[#111827]"
                   >
                     <option value="baixa">Baixa</option>
-                    <option value="media">Média</option>
+                    <option value="media">MÃ©dia</option>
                     <option value="alta">Alta / Urgente</option>
                   </select>
                 </div>
@@ -212,28 +212,28 @@ export default function MesaCentral({
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-1.5 md:col-span-1">
-                <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">Categoria Aplicável</label>
+                <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">Categoria AplicÃ¡vel</label>
                 <select
                   value={newCategory}
                   onChange={(e) => setNewCategory(e.target.value as any)}
                   className="w-full px-3 py-2 bg-white border border-slate-250 rounded text-xs focus:outline-hidden"
                 >
-                  <option value="coord">Coordenação / Organização</option>
-                  <option value="familia">Família / Responsáveis</option>
+                  <option value="coord">CoordenaÃ§Ã£o / OrganizaÃ§Ã£o</option>
+                  <option value="familia">FamÃ­lia / ResponsÃ¡veis</option>
                   <option value="professor">Corpo Docente</option>
-                  <option value="direcao">Direção Escolar</option>
+                  <option value="direcao">DireÃ§Ã£o Escolar</option>
                   <option value="aluno">Apoio a Alunos</option>
                   <option value="geral">Geral / Administrativo</option>
                 </select>
               </div>
 
               <div className="space-y-1.5 md:col-span-2">
-                <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">Observações Críticas / Contexto</label>
+                <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">ObservaÃ§Ãµes CrÃ­ticas / Contexto</label>
                 <input
                   type="text"
                   value={newNotes}
                   onChange={(e) => setNewNotes(e.target.value)}
-                  placeholder="Ex: Aluna apresenta resistência em falar em público, acordado com psicólogo."
+                  placeholder="Ex: Aluna apresenta resistÃªncia em falar em pÃºblico, acordado com psicÃ³logo."
                   className="w-full px-3 py-2 bg-white border border-slate-250 rounded text-xs focus:outline-hidden"
                 />
               </div>
@@ -275,7 +275,7 @@ export default function MesaCentral({
           <div className="flex flex-wrap items-center gap-2">
             <div className="flex items-center space-x-1.5 text-[9px] font-mono text-slate-400 font-bold uppercase mr-1">
               <Filter className="w-3.5 h-3.5 text-slate-400" />
-              <span>Público:</span>
+              <span>PÃºblico:</span>
             </div>
             
             <button
@@ -289,7 +289,7 @@ export default function MesaCentral({
               onClick={() => setSelectedCategory('familia')}
               className={`tech-btn-pill ${selectedCategory === 'familia' ? 'border-amber-400 bg-amber-50 text-amber-800 font-bold' : ''}`}
             >
-              Família
+              FamÃ­lia
             </button>
 
             <button
@@ -310,7 +310,7 @@ export default function MesaCentral({
               onClick={() => setSelectedCategory('direcao')}
               className={`tech-btn-pill ${selectedCategory === 'direcao' ? 'border-rose-400 bg-rose-50 text-rose-800 font-bold' : ''}`}
             >
-              Direção
+              DireÃ§Ã£o
             </button>
 
             {/* Separator */}
@@ -323,7 +323,7 @@ export default function MesaCentral({
             >
               <option value="todos">Todas as Prioridades</option>
               <option value="alta">Apenas Alta / Urgente</option>
-              <option value="media">Apenas Média</option>
+              <option value="media">Apenas MÃ©dia</option>
               <option value="baixa">Apenas Baixa</option>
             </select>
           </div>
@@ -337,7 +337,7 @@ export default function MesaCentral({
                 <Check className="w-3.5 h-3.5" />
               </div>
               <h4 className="font-semibold text-slate-700 text-xs">Nenhum registro selecionado</h4>
-              <p className="text-xs text-slate-400 max-w-xs mx-auto">Você completou todas as tarefas dessa aba ou nenhuma atende o termo bucar.</p>
+              <p className="text-xs text-slate-400 max-w-xs mx-auto">VocÃª completou todas as tarefas dessa aba ou nenhuma atende o termo buscar.</p>
             </div>
           ) : (
             filteredTasks.map((task) => (
@@ -377,7 +377,7 @@ export default function MesaCentral({
                             className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs text-slate-800"
                           >
                             <option value="alta">Alta / Urgente</option>
-                            <option value="media">Média</option>
+                            <option value="media">MÃ©dia</option>
                             <option value="baixa">Baixa</option>
                           </select>
                           <select
@@ -385,10 +385,10 @@ export default function MesaCentral({
                             onChange={(e) => setEditCategory(e.target.value as PendingTask['category'])}
                             className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs text-slate-800"
                           >
-                            <option value="coord">Coordenação</option>
-                            <option value="familia">Família</option>
+                            <option value="coord">CoordenaÃ§Ã£o</option>
+                            <option value="familia">FamÃ­lia</option>
                             <option value="professor">Corpo Docente</option>
-                            <option value="direcao">Direção</option>
+                            <option value="direcao">DireÃ§Ã£o</option>
                             <option value="aluno">Aluno</option>
                             <option value="geral">Geral</option>
                           </select>
@@ -403,7 +403,7 @@ export default function MesaCentral({
                           type="text"
                           value={editNotes}
                           onChange={(e) => setEditNotes(e.target.value)}
-                          placeholder="Observações"
+                          placeholder="ObservaÃ§Ãµes"
                           className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs text-slate-800"
                         />
                       </div>
@@ -426,7 +426,7 @@ export default function MesaCentral({
                           ? 'bg-indigo-50 text-indigo-800 border-indigo-150'
                           : 'bg-slate-50 text-slate-500 border-slate-205'
                       }`}>
-                        {task.priority === 'alta' ? 'Urgente' : task.priority === 'media' ? 'Média' : 'Baixa'}
+                        {task.priority === 'alta' ? 'Urgente' : task.priority === 'media' ? 'MÃ©dia' : 'Baixa'}
                       </span>
 
                       {/* Stakeholder Category Tag */}
@@ -461,7 +461,7 @@ export default function MesaCentral({
                         type="button"
                         onClick={() => handleSaveEditedTask(task)}
                         className="p-1.5 text-emerald-700 hover:bg-emerald-50 rounded transition-colors"
-                        title="Salvar edição"
+                        title="Salvar ediÃ§Ã£o"
                       >
                         <Check className="w-4 h-4" />
                       </button>
@@ -469,7 +469,7 @@ export default function MesaCentral({
                         type="button"
                         onClick={handleCancelEditTask}
                         className="p-1.5 text-slate-500 hover:bg-slate-100 rounded transition-colors"
-                        title="Cancelar edição"
+                        title="Cancelar ediÃ§Ã£o"
                       >
                         <X className="w-4 h-4" />
                       </button>
@@ -505,10 +505,11 @@ export default function MesaCentral({
         {/* Quick reminder help footer */}
         <div className="p-4 bg-[#F9FAFB] border-t border-slate-150 flex items-center space-x-2 text-xs text-slate-500 font-sans">
           <Info className="w-4 h-4 text-slate-400 flex-shrink-0" />
-          <span>Filtre as demandas acima por tipo de público para agilizar o contato através do módulo **Comunicação Assistida**!</span>
+          <span>Filtre as demandas acima por tipo de pÃºblico para agilizar o contato atravÃ©s do mÃ³dulo ComunicaÃ§Ã£o Assistida!</span>
         </div>
       </div>
     </div>
   );
 }
+
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { HistoryItem, HistoryActionType } from '../types';
 import { 
   History, 
@@ -273,3 +273,4 @@ export default function Historico({
     </div>
   );
 }
+

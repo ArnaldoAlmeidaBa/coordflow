@@ -74,7 +74,7 @@ Agendamos este momento para o dia [DATA_REU] às [HORA_REU] horas.
 A sua parceria e acompanhamento diário em casa são vitais para o avanço pedagógico e o bem-estar do(a) estudante. Por gentileza, confirme o recebimento e disponibilidade respondendo a este canal oficial.
 
 Atenciosamente,
-Coordenação Pedagógica – CETI - Ibicoara`
+Coordenação Pedagógica - CETI - Ibicoara`
   },
   {
     id: 'ct-2',
@@ -129,7 +129,7 @@ Pedimos pontualidade absoluta. A presença de todos é um requisito legal indisp
 Gratidão pela costumeira colaboração e empenho.
 
 Atenciosamente,
-Coordenação Pedagógica – CETI - Ibicoara`
+Coordenação Pedagógica - CETI - Ibicoara`
   },
   {
     id: 'ct-4',
@@ -169,4 +169,3 @@ export const INITIAL_HISTORY: HistoryItem[] = [
     category: 'pais'
   }
 ];
-

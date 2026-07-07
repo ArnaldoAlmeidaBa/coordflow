@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { CalendarEvent, EventType } from '../types';
 import { 
   Calendar, 
@@ -378,3 +378,4 @@ export default function Calendario({
     </div>
   );
 }
+
