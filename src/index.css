@@ -96,6 +96,171 @@ html {
   backdrop-filter: blur(8px);
 }
 
+.tech-card-library {
+  position: relative;
+  border-color: color-mix(in srgb, var(--app-accent) 40%, var(--app-border));
+  box-shadow:
+    0 14px 30px rgba(84, 58, 25, 0.08),
+    0 0 0 1px color-mix(in srgb, var(--app-accent) 10%, transparent),
+    0 0 34px color-mix(in srgb, var(--app-accent) 16%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--app-accent-soft) 36%, transparent), transparent 32%),
+    color-mix(in srgb, var(--app-surface) 96%, transparent);
+}
+
+.tech-card-library::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 6px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--app-accent) 12%, transparent), transparent 28%),
+    radial-gradient(circle at top right, color-mix(in srgb, var(--app-accent) 16%, transparent), transparent 42%);
+  opacity: 0.9;
+}
+
+.tech-card-library::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(169, 117, 45, 0.035), transparent 28%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(122, 79, 26, 0.025) 0,
+      rgba(122, 79, 26, 0.025) 1px,
+      transparent 1px,
+      transparent 22px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(122, 79, 26, 0.02) 0,
+      rgba(122, 79, 26, 0.02) 1px,
+      transparent 1px,
+      transparent 22px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0,
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px,
+      transparent 11px
+    ),
+    radial-gradient(
+      circle at 20% 18%,
+      rgba(255, 255, 255, 0.18) 0,
+      transparent 14%
+    ),
+    radial-gradient(
+      circle at 82% 20%,
+      rgba(255, 255, 255, 0.12) 0,
+      transparent 13%
+    );
+  opacity: 0.18;
+  mix-blend-mode: soft-light;
+}
+
+.tech-card-library > * {
+  position: relative;
+  z-index: 1;
+}
+
+.tech-card-header-library {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--app-accent-soft) 55%, transparent), transparent),
+    color-mix(in srgb, var(--app-surface) 97%, transparent);
+}
+
+.tech-card-library-intro {
+  border-bottom: 1px solid color-mix(in srgb, var(--app-accent) 22%, var(--app-border));
+  color: var(--app-text-muted);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--app-accent-soft) 22%, transparent), transparent 68%),
+    var(--app-surface-muted);
+}
+
+.tech-card-library-list {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--app-surface) 98%, transparent), color-mix(in srgb, var(--app-surface) 94%, transparent));
+}
+
+[data-theme="dark"] .tech-card-library {
+  border-color: color-mix(in srgb, var(--app-accent) 48%, var(--app-border));
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.26),
+    0 0 0 1px color-mix(in srgb, var(--app-accent) 14%, transparent),
+    0 0 38px color-mix(in srgb, var(--app-accent) 18%, transparent);
+  background:
+    linear-gradient(180deg, rgba(211, 163, 94, 0.09), transparent 34%),
+    var(--app-surface);
+}
+
+[data-theme="dark"] .tech-card-library::before {
+  background:
+    linear-gradient(135deg, rgba(211, 163, 94, 0.16), transparent 30%),
+    radial-gradient(circle at top right, rgba(211, 163, 94, 0.16), transparent 40%);
+}
+
+[data-theme="dark"] .tech-card-library::after {
+  background:
+    linear-gradient(180deg, rgba(211, 163, 94, 0.05), transparent 30%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.035) 0,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 22px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.03) 0,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 22px
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.05) 0,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 11px
+    ),
+    radial-gradient(
+      circle at 20% 18%,
+      rgba(255, 255, 255, 0.05) 0,
+      transparent 14%
+    ),
+    radial-gradient(
+      circle at 82% 20%,
+      rgba(255, 255, 255, 0.04) 0,
+      transparent 13%
+    );
+  opacity: 0.16;
+  mix-blend-mode: soft-light;
+}
+
+[data-theme="dark"] .tech-card-header-library {
+  background:
+    linear-gradient(180deg, rgba(211, 163, 94, 0.12), transparent),
+    var(--app-surface);
+}
+
+[data-theme="dark"] .tech-card-library-intro {
+  border-bottom-color: color-mix(in srgb, var(--app-accent) 28%, var(--app-border));
+  color: var(--app-text-muted);
+  background:
+    linear-gradient(90deg, rgba(211, 163, 94, 0.1), transparent 72%),
+    var(--app-surface-muted);
+}
+
+[data-theme="dark"] .tech-card-library-list {
+  background:
+    linear-gradient(180deg, rgba(36, 29, 22, 0.98), rgba(36, 29, 22, 0.94));
+}
+
 .tech-card-header {
   padding: 7px 9px;
   border-bottom: 1px solid var(--app-border);

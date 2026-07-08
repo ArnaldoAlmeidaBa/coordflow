@@ -165,19 +165,19 @@ export default function ComunicacaoAssistida({ templates, onAddHistory }: Comuni
       <div className="lg:col-span-5 space-y-3">
         
         {/* Templates library select box */}
-        <div className="tech-card">
-          <div className="tech-card-header bg-white">
+        <div className="tech-card tech-card-library">
+          <div className="tech-card-header tech-card-header-library bg-white">
             <div className="flex items-center space-x-2">
               <span className="tech-card-title">Biblioteca de Comunicados</span>
             </div>
             <span className="tech-badge">{templates.length} Modelos</span>
           </div>
           
-          <div className="p-2.5 bg-slate-50 border-b border-slate-150 text-[11px] text-slate-500 leading-normal">
+          <div className="p-2.5 tech-card-library-intro text-[11px] leading-normal">
             Modelos de redação para famílias, professores e atas internas que poupam tempo gerencial.
           </div>
 
-          <div className="p-2.5 space-y-1.5 max-h-[170px] overflow-y-auto bg-white">
+          <div className="p-2.5 space-y-1.5 max-h-[170px] overflow-y-auto tech-card-library-list bg-white">
             {templates.map(tpl => (
               <button
                 key={tpl.id}
