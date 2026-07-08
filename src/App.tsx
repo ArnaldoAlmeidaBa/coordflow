@@ -260,7 +260,7 @@ export default function App() {
     <div className={`min-h-dvh md:min-h-screen md:flex md:flex-row font-sans app-shell ${isDarkMode ? 'theme-dark' : ''}`}>
       
       {/* MOBILE RATIO BAR */}
-      <header className="md:hidden bg-white border-b border-[#E5E7EB] px-4 py-3.5 flex items-center justify-between sticky top-0 z-50">
+      <header className="md:hidden bg-white border-b border-[#E5E7EB] px-4 py-3 flex items-center justify-between sticky top-0 z-50">
         <div className="flex items-center space-x-2.5">
           <img
             src={coordenaLogoMark}
@@ -292,24 +292,24 @@ export default function App() {
 
       {/* COMPANION SIDEBAR */}
       <aside className={`
-        w-64 bg-white border-r border-[#E5E7EB] p-6 transition-transform duration-300
+        w-56 xl:w-60 bg-white border-r border-[#E5E7EB] p-4 xl:p-5 transition-transform duration-300
         ${isMobileMenuOpen ? 'fixed inset-y-0 left-0 z-40 flex flex-col' : 'hidden'}
         md:sticky md:top-0 md:z-auto md:flex md:h-screen md:flex-col
       `}>
         {/* LOGO AREA */}
-        <div className="mb-8 select-none">
+        <div className="mb-6 select-none">
           <div className="flex items-center space-x-2.5">
             <img
               src={coordenaLogoMark}
               alt="Logo do Coordena"
-              className="w-12 h-12 object-contain rounded-xl bg-white p-1 shadow-xs"
+              className="w-10 h-10 object-contain rounded-lg bg-white p-0.5 shadow-xs"
             />
             <div>
-              <h1 className="text-lg font-extrabold tracking-tight text-[#111827] leading-tight">Coordena</h1>
-              <p className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase mt-0.5">Gestão Pedagógica</p>
+              <h1 className="text-base font-extrabold tracking-tight text-[#111827] leading-tight">Coordena</h1>
+              <p className="text-[9px] text-slate-400 font-semibold tracking-wider uppercase mt-0.5">Gestão Pedagógica</p>
             </div>
           </div>
-          <p className="text-[10px] text-[#6B7280] mt-3 font-semibold font-mono border-t border-slate-100 pt-1.5">
+          <p className="text-[9px] text-[#6B7280] mt-2.5 font-semibold font-mono border-t border-slate-100 pt-1.25">
             <span>CETI - Ibicoara</span>
           </p>
         </div>
@@ -348,48 +348,46 @@ export default function App() {
         </nav>
 
         {/* BOTTOM METRIC RAIL */}
-        <div className="mt-auto pt-5 border-t border-[#E5E7EB] self-stretch space-y-4">
-          <p className="text-[10px] text-[#6B7280] uppercase tracking-widest font-bold mb-3">Status da Escola</p>
-          <div className="space-y-2.5">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-500"></span>
-              <span className="text-[11px] font-medium text-slate-700">94% Frequência Média</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className={`w-2 h-2 rounded-full ${pendingActiveCount > 0 ? 'bg-amber-500 animate-pulse' : 'bg-slate-300'}`}></span>
-              <span className="text-[11px] font-medium text-slate-700">{pendingActiveCount} Demandas Ativas</span>
-            </div>
-          </div>
-        </div>
-        <div className="space-y-2.5 pt-4">
-          <div className="flex items-center justify-between">
-            <p className="text-[9px] text-[#6B7280] uppercase tracking-[0.18em] font-bold">Ferramentas</p>
-            <div className="w-6.5 h-6.5 rounded-full bg-[#111827] text-white flex items-center justify-center text-[10px] font-bold font-mono" title="arnaldodealmeida@gmail.com">
+        <div className="mt-auto pt-4 border-t border-[#E5E7EB] self-stretch space-y-3">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-[9px] text-[#6B7280] uppercase tracking-[0.18em] font-bold">Status</p>
+            <div className="w-6 h-6 rounded-full bg-[#111827] text-white flex items-center justify-center text-[9px] font-bold font-mono" title="arnaldodealmeida@gmail.com">
               CP
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-green-500"></span>
+              <span className="text-[10px] font-medium text-slate-700">94% Frequência Média</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className={`w-2 h-2 rounded-full ${pendingActiveCount > 0 ? 'bg-amber-500 animate-pulse' : 'bg-slate-300'}`}></span>
+              <span className="text-[10px] font-medium text-slate-700">{pendingActiveCount} Demandas Ativas</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-1.5">
             <button
               type="button"
               onClick={handleToggleTheme}
-              className="flex items-center justify-center space-x-1.5 px-2 py-2 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[9px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
+              className="flex items-center justify-center space-x-1.5 px-2 py-1.5 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[8px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
               title={isDarkMode ? 'Alternar para tema claro' : 'Alternar para tema escuro'}
             >
-              <ThemeToggleIcon className="w-3.5 h-3.5" />
+              <ThemeToggleIcon className="w-3 h-3" />
               <span>Tema</span>
             </button>
 
             <button
               onClick={handleFullReset}
-              className="flex items-center justify-center space-x-1.5 px-2 py-2 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[9px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
+              className="flex items-center justify-center space-x-1.5 px-2 py-1.5 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[8px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
             >
               <RefreshCw className="w-3 h-3" />
               <span>Reset</span>
             </button>
           </div>
 
-          <div className="flex items-center space-x-1.5 text-slate-600 text-[9px] font-mono bg-[#F9FAFB] border border-[#E5E7EB] px-2.5 py-2 rounded-md">
+          <div className="flex items-center space-x-1.5 text-slate-600 text-[9px] font-mono bg-[#F9FAFB] border border-[#E5E7EB] px-2.5 py-1.5 rounded-md">
             <Clock className="w-3 h-3 text-slate-400" />
             <span>{clockString}</span>
           </div>
@@ -410,12 +408,12 @@ export default function App() {
 
         {/* CORE SCROLLABLE CONTAINER */}
         <main className="p-3.5 pb-4 md:flex-1 md:min-h-0 md:px-5 md:pt-3 md:pb-5 overflow-visible md:overflow-y-auto space-y-3 md:space-y-3.5">
-          <div className="hidden md:flex items-center justify-between gap-4 px-0.5">
+          <div className="hidden md:flex items-center justify-between gap-4 px-0.5 py-0.5">
             <div className="min-w-0">
               <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#8A7258]">Mesa de Trabalho</p>
               <h2 className="text-sm font-semibold text-[#2C241B] truncate">{activeTabLabel}</h2>
             </div>
-            <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#8A7258] text-right">
+            <p className="text-[8px] font-semibold uppercase tracking-[0.18em] text-[#8A7258] text-right">
               Área Útil de Coordenação
             </p>
           </div>
@@ -468,12 +466,12 @@ export default function App() {
         </main>
 
         {/* FOOTER BAR */}
-        <footer className="bg-white border-t border-[#E5E7EB] py-3.5 md:py-4.5 text-slate-500 text-xs px-4 md:px-8">
+        <footer className="bg-white border-t border-[#E5E7EB] py-2.5 md:py-3 text-slate-500 text-xs px-4 md:px-6">
           <div className="text-center flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="font-mono text-[11px] text-[#6B7280]">
+            <p className="font-mono text-[10px] text-[#6B7280]">
               Coordena • Camada Inteligente e Leve de Apoio Operacional ao Coordenador Pedagógico.
             </p>
-            <div className="flex items-center space-x-3.5 text-[#6B7280] text-[11px] font-semibold uppercase tracking-wider">
+            <div className="flex items-center space-x-3.5 text-[#6B7280] text-[10px] font-semibold uppercase tracking-wider">
               <span>Alívio Operacional</span>
               <span>•</span>
               <span className="text-[#4F46E5]">CETI - Ibicoara</span>

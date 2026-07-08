@@ -72,16 +72,16 @@ body {
 .tech-card {
   background: color-mix(in srgb, var(--app-surface) 94%, transparent);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 14px 34px rgba(84, 58, 25, 0.07);
-  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 22px rgba(84, 58, 25, 0.05);
+  backdrop-filter: blur(8px);
 }
 
 .tech-card-header {
-  padding: 12px 16px;
+  padding: 10px 12px;
   border-bottom: 1px solid var(--app-border);
   display: flex;
   justify-content: space-between;
@@ -91,18 +91,18 @@ body {
 
 .tech-card-title {
   font-family: "Georgia", Cambria, "Times New Roman", Times, serif;
-  font-style: italic;
-  font-size: 12px;
+  font-style: normal;
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: var(--app-text-muted);
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .tech-data-row {
   display: grid;
   grid-template-columns: 24px 1fr auto;
-  padding: 12px 16px;
+  padding: 10px 12px;
   border-bottom: 1px solid var(--app-border);
   align-items: center;
   cursor: pointer;
@@ -122,10 +122,10 @@ body {
 }
 
 .tech-btn-pill {
-  padding: 6px 12px;
-  border-radius: 999px;
+  padding: 5px 10px;
+  border-radius: 7px;
   border: 1px solid var(--app-border);
-  font-size: 11px;
+  font-size: 10px;
   text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
@@ -141,10 +141,10 @@ body {
 }
 
 .tech-btn-primary {
-  padding: 6px 12px;
-  border-radius: 999px;
+  padding: 5px 11px;
+  border-radius: 7px;
   border: none;
-  font-size: 11px;
+  font-size: 10px;
   text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
@@ -208,11 +208,11 @@ body {
 
 .tech-badge {
   font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 10px;
+  font-size: 9px;
   color: var(--app-text-muted);
   background: var(--app-surface-subtle);
   padding: 2px 6.5px;
-  border-radius: 4px;
+  border-radius: 3px;
   border: 1px solid var(--app-border);
 }
 
