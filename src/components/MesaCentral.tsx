@@ -164,7 +164,7 @@ export default function MesaCentral({
         </div>
 
         {/* Action subtitle banner */}
-        <div className="px-3.5 py-2 bg-slate-50/60 border-b border-slate-150 text-[10px] text-slate-500 font-sans">
+        <div className="px-3.5 py-2 bg-slate-50 border-b border-slate-150 text-[10px] text-slate-600 font-sans">
           Acompanhamento e rastreio de demandas imediatas de suporte pedagógico na unidade.
         </div>
 
@@ -258,7 +258,7 @@ export default function MesaCentral({
         )}
 
         {/* Filters and search controller */}
-        <div className="p-3 border-b border-light flex flex-col xl:flex-row xl:items-center xl:justify-between gap-2.5 bg-slate-50/40 [&_.tech-btn-pill]:px-2.5 [&_.tech-btn-pill]:py-1.25 [&_.tech-btn-pill]:text-[9px]">
+        <div className="p-3 border-b border-light flex flex-col xl:flex-row xl:items-center xl:justify-between gap-2.5 bg-slate-50 [&_.tech-btn-pill]:px-2.5 [&_.tech-btn-pill]:py-1.25 [&_.tech-btn-pill]:text-[9px]">
           {/* Quick search input */}
           <div className="relative flex-1 max-w-sm">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -503,7 +503,7 @@ export default function MesaCentral({
         </div>
 
         {/* Quick reminder help footer */}
-        <div className="p-3.5 bg-[#F9FAFB]/80 border-t border-slate-150 flex items-center space-x-2 text-xs text-slate-500 font-sans">
+        <div className="p-3.5 bg-[#F9FAFB] border-t border-slate-150 flex items-center space-x-2 text-xs text-slate-600 font-sans">
           <Info className="w-4 h-4 text-slate-400 flex-shrink-0" />
           <span>Filtre as demandas acima por tipo de público para agilizar o contato através do módulo Comunicação Assistida!</span>
         </div>

@@ -243,7 +243,8 @@ body {
 .theme-dark .bg-slate-50,
 .theme-dark .bg-slate-50\/30,
 .theme-dark .bg-slate-50\/40,
-.theme-dark .bg-slate-50\/50 {
+.theme-dark .bg-slate-50\/50,
+.theme-dark .bg-slate-50\/60 {
   background-color: var(--app-surface-muted) !important;
 }
 
