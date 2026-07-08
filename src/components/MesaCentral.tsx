@@ -144,11 +144,11 @@ export default function MesaCentral({
   };
 
   return (
-    <div className="space-y-3.5 md:space-y-4">
+    <div className="space-y-2.5 md:space-y-3">
       {/* Main Panel Content split into actions + list */}
       <div className="tech-card">
         {/* Header controller */}
-        <div className="tech-card-header bg-white px-3.5 py-2.5 [&_.tech-card-title]:text-[10px] [&_.tech-card-title]:tracking-[0.025em] [&_.tech-badge]:text-[8px] [&_.tech-btn-primary]:px-3.5 [&_.tech-btn-primary]:py-1.25 [&_.tech-btn-primary]:text-[9px]">
+        <div className="tech-card-header bg-white px-3 py-2 [&_.tech-card-title]:text-[10px] [&_.tech-card-title]:tracking-[0.025em] [&_.tech-badge]:text-[8px] [&_.tech-btn-primary]:px-3 [&_.tech-btn-primary]:py-1 [&_.tech-btn-primary]:text-[8px]">
           <div className="flex items-center space-x-2">
             <span className="tech-card-title">Mesa Operacional de Demandas</span>
             <span className="tech-badge">{filteredTasks.length} Exibidas</span>
@@ -164,14 +164,14 @@ export default function MesaCentral({
         </div>
 
         {/* Action subtitle banner */}
-        <div className="px-3.5 py-2 bg-slate-50 border-b border-slate-150 text-[10px] text-slate-600 font-sans">
+        <div className="px-3 py-1.5 bg-slate-50 border-b border-slate-150 text-[10px] text-slate-600 font-sans">
           Acompanhamento e rastreio de demandas imediatas de suporte pedagógico na unidade.
         </div>
 
         {/* Collapsible Action Add-Form Widget */}
         {isFormOpen && (
-          <form id="new-task-form" onSubmit={handleSubmit} className="p-4 bg-[#F9FAFB] border-b border-slate-200 space-y-3.5">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form id="new-task-form" onSubmit={handleSubmit} className="p-3 bg-[#F9FAFB] border-b border-slate-200 space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">O que precisa ser feito? *</label>
                 <input
@@ -184,7 +184,7 @@ export default function MesaCentral({
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2.5">
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">Prazo / Limite</label>
                   <input
@@ -210,7 +210,7 @@ export default function MesaCentral({
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div className="space-y-1.5 md:col-span-1">
                 <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">Categoria Aplicável</label>
                 <select
@@ -239,7 +239,7 @@ export default function MesaCentral({
               </div>
             </div>
 
-            <div className="flex justify-end space-x-2 pt-2 border-t border-slate-200">
+            <div className="flex justify-end space-x-2 pt-1.5 border-t border-slate-200">
               <button
                 type="button"
                 onClick={() => setIsFormOpen(false)}
@@ -258,7 +258,7 @@ export default function MesaCentral({
         )}
 
         {/* Filters and search controller */}
-        <div className="p-3 border-b border-light flex flex-col xl:flex-row xl:items-center xl:justify-between gap-2.5 bg-slate-50 [&_.tech-btn-pill]:px-2.5 [&_.tech-btn-pill]:py-1.25 [&_.tech-btn-pill]:text-[9px]">
+        <div className="p-2.5 border-b border-light flex flex-col xl:flex-row xl:items-center xl:justify-between gap-2 bg-slate-50 [&_.tech-btn-pill]:px-2 [&_.tech-btn-pill]:py-1 [&_.tech-btn-pill]:text-[8px]">
           {/* Quick search input */}
           <div className="relative flex-1 max-w-sm">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -267,13 +267,13 @@ export default function MesaCentral({
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Buscar demanda..."
-              className="w-full pl-8.5 pr-3 py-1.25 bg-white border border-slate-250 rounded-lg text-[10px] font-sans text-slate-850 focus:outline-hidden"
+              className="w-full pl-8.5 pr-3 py-1 bg-white border border-slate-250 rounded-lg text-[10px] font-sans text-slate-850 focus:outline-hidden"
             />
           </div>
 
           {/* Filtering buttons */}
           <div className="flex flex-wrap items-center gap-2">
-            <div className="flex items-center space-x-1.5 text-[9px] font-mono text-slate-400 font-bold uppercase mr-1">
+            <div className="flex items-center space-x-1.5 text-[8px] font-mono text-slate-400 font-bold uppercase mr-1">
               <Filter className="w-3.5 h-3.5 text-slate-400" />
               <span>Público:</span>
             </div>
@@ -319,7 +319,7 @@ export default function MesaCentral({
             <select
               value={selectedPriority}
               onChange={(e) => setSelectedPriority(e.target.value)}
-              className="px-2.5 py-1 text-[10px] bg-white text-slate-600 border border-slate-250 rounded focus:outline-hidden"
+              className="px-2.5 py-[3px] text-[10px] bg-white text-slate-600 border border-slate-250 rounded focus:outline-hidden"
             >
               <option value="todos">Todas as Prioridades</option>
               <option value="alta">Apenas Alta / Urgente</option>
@@ -332,7 +332,7 @@ export default function MesaCentral({
         {/* Task List table/grid */}
         <div className="divide-y divide-slate-100 bg-white">
           {filteredTasks.length === 0 ? (
-            <div className="p-10 text-center space-y-2">
+            <div className="p-8 text-center space-y-2">
               <div className="w-10 h-10 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-2 border border-slate-200">
                 <Check className="w-3.5 h-3.5" />
               </div>
@@ -344,7 +344,7 @@ export default function MesaCentral({
               <div 
                 key={task.id} 
                 id={`task-item-${task.id}`}
-                className={`p-4 flex items-start sm:items-center justify-between gap-4 transition-all hover:bg-slate-55/40 ${
+                className={`p-3 flex items-start sm:items-center justify-between gap-3 transition-all hover:bg-slate-55/40 ${
                   task.status === 'concluido' ? 'opacity-65 bg-slate-50/40' : ''
                 }`}
               >
@@ -361,16 +361,16 @@ export default function MesaCentral({
                     {task.status === 'concluido' && <Check className="w-3 h-3" />}
                   </button>
 
-                  <div className="space-y-1">
+                  <div className="space-y-[3px]">
                     {editingTaskId === task.id ? (
-                      <div className="space-y-2 w-full">
+                      <div className="space-y-1.5 w-full">
                         <input
                           type="text"
                           value={editTitle}
                           onChange={(e) => setEditTitle(e.target.value)}
                           className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs text-slate-800"
                         />
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-1.5">
                           <select
                             value={editPriority}
                             onChange={(e) => setEditPriority(e.target.value as PendingTask['priority'])}
@@ -404,7 +404,7 @@ export default function MesaCentral({
                           value={editNotes}
                           onChange={(e) => setEditNotes(e.target.value)}
                           placeholder="Observações"
-                          className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs text-slate-800"
+                          className="w-full px-2.5 py-[5px] border border-slate-300 rounded text-xs text-slate-800"
                         />
                       </div>
                     ) : (
@@ -417,9 +417,9 @@ export default function MesaCentral({
                     
                     {/* Meta info block */}
                     {editingTaskId !== task.id && (
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-1.5">
                       {/* Priority Tag */}
-                      <span className={`text-[10px] font-bold font-mono px-2 py-0.2 rounded border uppercase tracking-wider ${
+                      <span className={`text-[9px] font-bold font-mono px-2 py-[2px] rounded border uppercase tracking-wider ${
                         task.priority === 'alta' 
                           ? 'bg-rose-50 text-rose-800 border-rose-150' 
                           : task.priority === 'media'
@@ -430,12 +430,12 @@ export default function MesaCentral({
                       </span>
 
                       {/* Stakeholder Category Tag */}
-                      <span className={`text-[10px] font-semibold px-2 py-0.2 border rounded ${getCategoryBadgeStyle(task.category)}`}>
+                      <span className={`text-[9px] font-semibold px-2 py-[2px] border rounded ${getCategoryBadgeStyle(task.category)}`}>
                         {getCategoryLabel(task.category)}
                       </span>
 
                       {/* Deadline label */}
-                      <span className="text-[10px] text-slate-500 flex items-center font-mono font-medium">
+                      <span className="text-[9px] text-slate-500 flex items-center font-mono font-medium">
                         <Clock className="w-3 h-3 mr-1 text-slate-400" />
                         Limite: {task.deadline.split('-').reverse().join('/')}
                       </span>
@@ -444,7 +444,7 @@ export default function MesaCentral({
 
                     {/* Task notes if present */}
                     {editingTaskId !== task.id && task.notes && (
-                      <p className={`text-xs p-2.5 bg-[#F9FAFB] border-l border-[#111827] mt-1.5 rounded-r font-sans leading-relaxed ${
+                      <p className={`text-xs p-2 bg-[#F9FAFB] border-l border-[#111827] mt-[5px] rounded-r font-sans leading-relaxed ${
                         task.status === 'concluido' ? 'text-slate-400 border-slate-300' : 'text-slate-600'
                       }`}>
                         {task.notes}
@@ -503,7 +503,7 @@ export default function MesaCentral({
         </div>
 
         {/* Quick reminder help footer */}
-        <div className="p-3.5 bg-[#F9FAFB] border-t border-slate-150 flex items-center space-x-2 text-xs text-slate-600 font-sans">
+        <div className="p-3 bg-[#F9FAFB] border-t border-slate-150 flex items-center space-x-2 text-[10px] text-slate-600 font-sans">
           <Info className="w-4 h-4 text-slate-400 flex-shrink-0" />
           <span>Filtre as demandas acima por tipo de público para agilizar o contato através do módulo Comunicação Assistida!</span>
         </div>

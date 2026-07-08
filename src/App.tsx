@@ -254,10 +254,8 @@ export default function App() {
     { id: 'calendario', label: 'Calendário Operacional', icon: CalendarIcon, badge: events.length > 0 ? events.length : null, badgeColor: 'bg-indigo-100 text-indigo-800 font-mono text-[9px]' },
     { id: 'historico', label: 'Histórico Institucional', icon: HistoryIcon, badge: null, badgeColor: '' },
   ] as const;
-  const activeTabLabel = tabItems.find(item => item.id === activeTab)?.label ?? 'Mesa Central';
-
   return (
-    <div className={`min-h-dvh md:min-h-screen md:flex md:flex-row font-sans app-shell ${isDarkMode ? 'theme-dark' : ''}`}>
+    <div className={`min-h-dvh md:min-h-screen md:flex md:flex-col font-sans app-shell ${isDarkMode ? 'theme-dark' : ''}`}>
       
       {/* MOBILE RATIO BAR */}
       <header className="md:hidden bg-white border-b border-[#E5E7EB] px-4 py-3 flex items-center justify-between sticky top-0 z-50">
@@ -269,7 +267,7 @@ export default function App() {
           />
           <div>
             <span className="font-extrabold text-sm text-[#111827] tracking-tight">Coordena</span>
-            <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.2 ml-2 border rounded font-mono font-bold uppercase">v1.0</span>
+            <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-[1px] ml-2 border rounded font-mono font-bold uppercase">v1.0</span>
           </div>
         </div>
         <div className="flex items-center space-x-2">
@@ -290,11 +288,84 @@ export default function App() {
         </div>
       </header>
 
+      {/* DESKTOP TOP NAV */}
+      <header className="hidden md:block sticky top-0 z-40 border-b border-[#E5E7EB] bg-white backdrop-blur-sm">
+        <div className="flex items-center justify-between gap-3 px-4 py-2">
+          <div className="min-w-0">
+            <p className="desktop-top-kicker text-[8px] font-semibold uppercase tracking-[0.22em] text-[#8A7258]">Mesa de Trabalho</p>
+            <h1 className="desktop-top-title text-[10px] font-semibold text-[#2C241B] truncate">Coordena • CETI - Ibicoara</h1>
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={handleToggleTheme}
+              className="flex items-center justify-center w-[30px] h-[30px] rounded-lg border border-[#E5E7EB] text-slate-600 hover:bg-slate-50 transition-colors bg-white"
+              title={isDarkMode ? 'Ativar tema claro' : 'Ativar tema escuro'}
+            >
+              <ThemeToggleIcon className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={handleFullReset}
+              className="flex items-center justify-center gap-1 px-2.5 py-1 rounded-lg border border-[#E5E7EB] text-slate-600 hover:text-[#111827] hover:bg-slate-50 text-[9px] font-semibold uppercase tracking-[0.12em] transition-all bg-white"
+            >
+              <RefreshCw className="w-3 h-3" />
+              <span>Reset</span>
+            </button>
+
+            <details className="top-nav-status group relative">
+              <summary className="list-none cursor-pointer flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-[#E5E7EB] bg-white text-slate-600 hover:text-[#111827] hover:bg-slate-50 text-[9px] font-semibold uppercase tracking-[0.12em] transition-all">
+                <span>Status</span>
+                <span className="w-[22px] h-[22px] rounded-full bg-[#111827] text-white flex items-center justify-center text-[8px] font-bold font-mono" title="arnaldodealmeida@gmail.com">
+                  CP
+                </span>
+              </summary>
+              <div className="absolute right-0 mt-2 w-56 rounded-xl border border-[#E5E7EB] bg-[color:var(--app-surface)] shadow-lg p-2.5 space-y-1.5">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[8px] text-[#6B7280] uppercase tracking-[0.18em] font-bold">Status</span>
+                  <span className="text-[8px] text-[#6B7280] font-mono">{clockString}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                  <span className="text-[9px] font-medium text-slate-700">94% Frequência Média</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className={`w-2 h-2 rounded-full ${pendingActiveCount > 0 ? 'bg-amber-500 animate-pulse' : 'bg-slate-300'}`}></span>
+                  <span className="text-[9px] font-medium text-slate-700">{pendingActiveCount} Demandas Ativas</span>
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <nav className="px-4 pb-1.5 flex items-center gap-1 overflow-x-auto">
+          {tabItems.map(item => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                id={`tab-${item.id}-button`}
+                onClick={() => setActiveTab(item.id as any)}
+                className={`top-nav-tab ${isActive ? 'top-nav-tab-active' : ''}`}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                <span>{item.label}</span>
+                {item.badge !== null && (
+                  <span className={`sidebar-nav-item-badge ${isActive ? 'sidebar-nav-item-badge-active' : item.badgeColor}`}>
+                    {item.badge}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </nav>
+      </header>
+
       {/* COMPANION SIDEBAR */}
       <aside className={`
-        w-52 xl:w-56 bg-white border-r border-[#E5E7EB] p-3 xl:p-3.5 transition-transform duration-300
+        w-48 xl:w-52 bg-white border-r border-[#E5E7EB] p-2.5 xl:p-3 transition-transform duration-300 md:hidden
         ${isMobileMenuOpen ? 'fixed inset-y-0 left-0 z-40 flex flex-col' : 'hidden'}
-        md:sticky md:top-0 md:z-auto md:flex md:h-screen md:flex-col
       `}>
         {/* LOGO AREA */}
         <div className="mb-4 select-none">
@@ -309,7 +380,7 @@ export default function App() {
               <p className="text-[8px] text-slate-400 font-semibold tracking-wider uppercase mt-0.5">Gestão Pedagógica</p>
             </div>
           </div>
-          <p className="text-[8px] text-[#6B7280] mt-2 font-semibold font-mono border-t border-slate-100 pt-1.25">
+          <p className="text-[8px] text-[#6B7280] mt-2 font-semibold font-mono border-t border-slate-100 pt-[5px]">
             <span>CETI - Ibicoara</span>
           </p>
         </div>
@@ -371,7 +442,7 @@ export default function App() {
             <button
               type="button"
               onClick={handleToggleTheme}
-              className="flex items-center justify-center space-x-1 px-2 py-1.25 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[8px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
+              className="flex items-center justify-center space-x-1 px-2 py-[5px] border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[8px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
               title={isDarkMode ? 'Alternar para tema claro' : 'Alternar para tema escuro'}
             >
               <ThemeToggleIcon className="w-2.5 h-2.5" />
@@ -380,14 +451,14 @@ export default function App() {
 
             <button
               onClick={handleFullReset}
-              className="flex items-center justify-center space-x-1 px-2 py-1.25 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[8px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
+              className="flex items-center justify-center space-x-1 px-2 py-[5px] border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[8px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
             >
               <RefreshCw className="w-2.5 h-2.5" />
               <span>Reset</span>
             </button>
           </div>
 
-          <div className="flex items-center space-x-1.5 text-slate-600 text-[8px] font-mono bg-[#F9FAFB] border border-[#E5E7EB] px-2.5 py-1.25 rounded-md">
+          <div className="flex items-center space-x-1.5 text-slate-600 text-[8px] font-mono bg-[#F9FAFB] border border-[#E5E7EB] px-2.5 py-[5px] rounded-md">
             <Clock className="w-2.5 h-2.5 text-slate-400" />
             <span>{clockString}</span>
           </div>
@@ -407,16 +478,7 @@ export default function App() {
         
 
         {/* CORE SCROLLABLE CONTAINER */}
-        <main className="p-3 pb-3.5 md:flex-1 md:min-h-0 md:px-4 md:pt-2.5 md:pb-4 overflow-visible md:overflow-y-auto space-y-3 md:space-y-3">
-          <div className="hidden md:flex items-center justify-between gap-3 px-0.5 py-0.5">
-            <div className="min-w-0">
-              <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#8A7258]">Mesa de Trabalho</p>
-              <h2 className="text-sm font-semibold text-[#2C241B] truncate">{activeTabLabel}</h2>
-            </div>
-            <p className="text-[8px] font-semibold uppercase tracking-[0.18em] text-[#8A7258] text-right">
-              Área Útil de Coordenação
-            </p>
-          </div>
+        <main className="p-2.5 pb-3 md:flex-1 md:min-h-0 md:px-4 md:pt-3 md:pb-3.5 overflow-visible md:overflow-y-auto space-y-2.5 md:space-y-2.5">
           
           {activeTab === 'mesa' && (
             <MesaCentral
@@ -466,8 +528,8 @@ export default function App() {
         </main>
 
         {/* FOOTER BAR */}
-        <footer className="bg-white border-t border-[#E5E7EB] py-2 md:py-2.5 text-slate-500 text-xs px-4 md:px-5">
-          <div className="text-center flex flex-col sm:flex-row items-center justify-between gap-3">
+        <footer className="bg-white border-t border-[#E5E7EB] py-[5px] md:py-1.5 text-slate-500 text-xs px-4 md:px-5">
+          <div className="text-center flex flex-col sm:flex-row items-center justify-between gap-2.5">
             <p className="font-mono text-[10px] text-[#6B7280]">
               Coordena • Camada Inteligente e Leve de Apoio Operacional ao Coordenador Pedagógico.
             </p>

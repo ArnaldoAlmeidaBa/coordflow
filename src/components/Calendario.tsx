@@ -102,16 +102,16 @@ export default function Calendario({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
       
       {/* LEFT: Quick Add Form & Dynamic Event Types Filter */}
-      <div className="lg:col-span-4 space-y-4">
+      <div className="lg:col-span-4 space-y-3">
         
         {/* Toggle Form button */}
         <button
           id="btn-toggle-calendar"
           onClick={() => setIsFormOpen(!isFormOpen)}
-          className="w-full flex items-center justify-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-sm cursor-pointer"
+          className="w-full flex items-center justify-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-sm cursor-pointer"
         >
           {isFormOpen ? (
             <>
@@ -155,7 +155,7 @@ export default function Calendario({
                 }`}
               >
                 <span>{item.label}</span>
-                <span className="bg-slate-100 text-slate-600 px-2 py-0.2 rounded font-mono text-[10px] font-bold">
+                <span className="bg-slate-100 text-slate-600 px-2 py-[2px] rounded font-mono text-[10px] font-bold">
                   {item.count}
                 </span>
               </button>
@@ -164,7 +164,7 @@ export default function Calendario({
         </div>
 
         {/* Operational disclaimer helper card */}
-        <div className="bg-amber-50/70 border border-amber-200 rounded p-4 space-y-2">
+        <div className="bg-amber-50/70 border border-amber-200 rounded p-3 space-y-2">
           <h5 className="text-xs font-black text-amber-900 flex items-center gap-1.5 uppercase tracking-wide">
             <Award className="w-4.5 h-4.5 text-amber-700" />
             <span>Sinalização Ativa</span>
@@ -181,13 +181,13 @@ export default function Calendario({
         
         {isFormOpen ? (
           /* EVENT CREATOR FORM CONTAINER */
-          <form onSubmit={handleSubmit} className="tech-card bg-white p-6 space-y-4">
+          <form onSubmit={handleSubmit} className="tech-card bg-white p-4 space-y-3.5">
             <div className="pb-2 border-b border-slate-150">
               <span className="tech-card-title text-base block mb-0.5">Agendar Novo Evento ou Marco</span>
               <p className="text-xs text-slate-500">Mapeie no painel de datas para prover previsibilidade de entregas pedagógicas.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div className="space-y-1">
                 <label className="text-[10px] uppercase font-bold tracking-wider text-slate-500 block">Nome do Evento / Entrega *</label>
                 <input
@@ -217,7 +217,7 @@ export default function Calendario({
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div className="space-y-1 font-mono">
                 <label className="text-[10px] uppercase font-bold tracking-wider text-slate-500 block font-sans">Data do Calendário *</label>
                 <input
@@ -287,13 +287,13 @@ export default function Calendario({
               <span className="tech-badge bg-indigo-50 text-[#4F46E5] border-indigo-100">{filteredEvents.length} Ativos</span>
             </div>
 
-            <div className="p-4 bg-slate-50 border-b border-slate-150 text-[11px] text-slate-500 leading-normal">
+            <div className="p-3 bg-slate-50 border-b border-slate-150 text-[11px] text-slate-500 leading-normal">
               Visualização sequencial das próximas datas cronológicas pautadas na coordenação.
             </div>
 
-            <div className="p-5 space-y-4 bg-white" id="events-timeline">
+            <div className="p-4 space-y-3 bg-white" id="events-timeline">
               {filteredEvents.length === 0 ? (
-                <div className="p-10 text-center text-slate-400 text-xs font-sans">
+                <div className="p-8 text-center text-slate-400 text-xs font-sans">
                   Nenhum evento mapeado para os filtros selecionados no momento.
                 </div>
               ) : (
@@ -302,7 +302,7 @@ export default function Calendario({
                     <div 
                       key={ev.id} 
                       id={`ev-card-${ev.id}`}
-                      className="p-4 bg-white border border-slate-200 rounded hover:border-[#4F46E5] transition-all flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4"
+                      className="p-3 bg-white border border-slate-200 rounded hover:border-[#4F46E5] transition-all flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3"
                     >
                       {/* Left: date + type badges */}
                       <div className="flex items-start space-x-3.5">
@@ -321,7 +321,7 @@ export default function Calendario({
                         {/* Middle info */}
                         <div className="space-y-1.5 min-w-0">
                           <div className="flex flex-wrap items-center gap-1.5">
-                            <span className={`text-[9px] font-bold px-2 py-0.2 border rounded uppercase tracking-wider ${getEventTypeColor(ev.type)}`}>
+                            <span className={`text-[9px] font-bold px-2 py-[2px] border rounded uppercase tracking-wider ${getEventTypeColor(ev.type)}`}>
                               {getEventTypeLabel(ev.type)}
                             </span>
                             
