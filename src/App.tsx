@@ -292,7 +292,7 @@ export default function App() {
 
       {/* COMPANION SIDEBAR */}
       <aside className={`
-        w-52 xl:w-56 bg-white border-r border-[#E5E7EB] p-3.5 xl:p-4 transition-transform duration-300
+        w-52 xl:w-56 bg-white border-r border-[#E5E7EB] p-3 xl:p-3.5 transition-transform duration-300
         ${isMobileMenuOpen ? 'fixed inset-y-0 left-0 z-40 flex flex-col' : 'hidden'}
         md:sticky md:top-0 md:z-auto md:flex md:h-screen md:flex-col
       `}>
@@ -348,9 +348,9 @@ export default function App() {
         </nav>
 
         {/* BOTTOM METRIC RAIL */}
-        <div className="mt-auto pt-4 border-t border-[#E5E7EB] self-stretch space-y-3">
+        <div className="mt-auto pt-4 border-t border-[#E5E7EB] self-stretch space-y-2.5">
           <div className="flex items-center justify-between gap-3">
-            <p className="text-[9px] text-[#6B7280] uppercase tracking-[0.18em] font-bold">Status</p>
+            <p className="text-[8px] text-[#6B7280] uppercase tracking-[0.18em] font-bold">Status</p>
             <div className="w-6 h-6 rounded-full bg-[#111827] text-white flex items-center justify-center text-[9px] font-bold font-mono" title="arnaldodealmeida@gmail.com">
               CP
             </div>
@@ -359,11 +359,11 @@ export default function App() {
           <div className="space-y-1.5">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500"></span>
-              <span className="text-[10px] font-medium text-slate-700">94% Frequência Média</span>
+              <span className="text-[9px] font-medium text-slate-700">94% Frequência Média</span>
             </div>
             <div className="flex items-center gap-2">
               <span className={`w-2 h-2 rounded-full ${pendingActiveCount > 0 ? 'bg-amber-500 animate-pulse' : 'bg-slate-300'}`}></span>
-              <span className="text-[10px] font-medium text-slate-700">{pendingActiveCount} Demandas Ativas</span>
+              <span className="text-[9px] font-medium text-slate-700">{pendingActiveCount} Demandas Ativas</span>
             </div>
           </div>
 
@@ -371,24 +371,24 @@ export default function App() {
             <button
               type="button"
               onClick={handleToggleTheme}
-              className="flex items-center justify-center space-x-1.5 px-2 py-1.5 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[8px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
+              className="flex items-center justify-center space-x-1 px-2 py-1.25 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[8px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
               title={isDarkMode ? 'Alternar para tema claro' : 'Alternar para tema escuro'}
             >
-              <ThemeToggleIcon className="w-3 h-3" />
+              <ThemeToggleIcon className="w-2.5 h-2.5" />
               <span>Tema</span>
             </button>
 
             <button
               onClick={handleFullReset}
-              className="flex items-center justify-center space-x-1.5 px-2 py-1.5 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[8px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
+              className="flex items-center justify-center space-x-1 px-2 py-1.25 border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[8px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
             >
-              <RefreshCw className="w-3 h-3" />
+              <RefreshCw className="w-2.5 h-2.5" />
               <span>Reset</span>
             </button>
           </div>
 
-          <div className="flex items-center space-x-1.5 text-slate-600 text-[9px] font-mono bg-[#F9FAFB] border border-[#E5E7EB] px-2.5 py-1.5 rounded-md">
-            <Clock className="w-3 h-3 text-slate-400" />
+          <div className="flex items-center space-x-1.5 text-slate-600 text-[8px] font-mono bg-[#F9FAFB] border border-[#E5E7EB] px-2.5 py-1.25 rounded-md">
+            <Clock className="w-2.5 h-2.5 text-slate-400" />
             <span>{clockString}</span>
           </div>
         </div>
@@ -407,8 +407,8 @@ export default function App() {
         
 
         {/* CORE SCROLLABLE CONTAINER */}
-        <main className="p-3.5 pb-4 md:flex-1 md:min-h-0 md:px-5 md:pt-3 md:pb-5 overflow-visible md:overflow-y-auto space-y-3 md:space-y-3.5">
-          <div className="hidden md:flex items-center justify-between gap-4 px-0.5 py-0.5">
+        <main className="p-3 pb-3.5 md:flex-1 md:min-h-0 md:px-4 md:pt-2.5 md:pb-4 overflow-visible md:overflow-y-auto space-y-3 md:space-y-3">
+          <div className="hidden md:flex items-center justify-between gap-3 px-0.5 py-0.5">
             <div className="min-w-0">
               <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#8A7258]">Mesa de Trabalho</p>
               <h2 className="text-sm font-semibold text-[#2C241B] truncate">{activeTabLabel}</h2>
@@ -466,12 +466,12 @@ export default function App() {
         </main>
 
         {/* FOOTER BAR */}
-        <footer className="bg-white border-t border-[#E5E7EB] py-2.5 md:py-3 text-slate-500 text-xs px-4 md:px-6">
-          <div className="text-center flex flex-col sm:flex-row items-center justify-between gap-4">
+        <footer className="bg-white border-t border-[#E5E7EB] py-2 md:py-2.5 text-slate-500 text-xs px-4 md:px-5">
+          <div className="text-center flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="font-mono text-[10px] text-[#6B7280]">
               Coordena • Camada Inteligente e Leve de Apoio Operacional ao Coordenador Pedagógico.
             </p>
-            <div className="flex items-center space-x-3.5 text-[#6B7280] text-[10px] font-semibold uppercase tracking-wider">
+            <div className="flex items-center space-x-3 text-[#6B7280] text-[10px] font-semibold uppercase tracking-wider">
               <span>Alívio Operacional</span>
               <span>•</span>
               <span className="text-[#4F46E5]">CETI - Ibicoara</span>
