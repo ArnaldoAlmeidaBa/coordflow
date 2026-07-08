@@ -292,30 +292,30 @@ export default function App() {
 
       {/* COMPANION SIDEBAR */}
       <aside className={`
-        w-56 xl:w-60 bg-white border-r border-[#E5E7EB] p-4 xl:p-5 transition-transform duration-300
+        w-52 xl:w-56 bg-white border-r border-[#E5E7EB] p-3.5 xl:p-4 transition-transform duration-300
         ${isMobileMenuOpen ? 'fixed inset-y-0 left-0 z-40 flex flex-col' : 'hidden'}
         md:sticky md:top-0 md:z-auto md:flex md:h-screen md:flex-col
       `}>
         {/* LOGO AREA */}
-        <div className="mb-6 select-none">
+        <div className="mb-4 select-none">
           <div className="flex items-center space-x-2.5">
             <img
               src={coordenaLogoMark}
               alt="Logo do Coordena"
-              className="w-10 h-10 object-contain rounded-lg bg-white p-0.5 shadow-xs"
+              className="w-9 h-9 object-contain rounded-lg bg-white p-0.5 shadow-xs"
             />
             <div>
-              <h1 className="text-base font-extrabold tracking-tight text-[#111827] leading-tight">Coordena</h1>
-              <p className="text-[9px] text-slate-400 font-semibold tracking-wider uppercase mt-0.5">Gestão Pedagógica</p>
+              <h1 className="text-sm font-extrabold tracking-tight text-[#111827] leading-tight">Coordena</h1>
+              <p className="text-[8px] text-slate-400 font-semibold tracking-wider uppercase mt-0.5">Gestão Pedagógica</p>
             </div>
           </div>
-          <p className="text-[9px] text-[#6B7280] mt-2.5 font-semibold font-mono border-t border-slate-100 pt-1.25">
+          <p className="text-[8px] text-[#6B7280] mt-2 font-semibold font-mono border-t border-slate-100 pt-1.25">
             <span>CETI - Ibicoara</span>
           </p>
         </div>
 
         {/* COMPREHENSIVE SIDE NAVIGATION */}
-        <nav className="flex-1 space-y-1">
+        <nav className="flex-1 space-y-0.5">
           {tabItems.map(item => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -327,18 +327,18 @@ export default function App() {
                   setActiveTab(item.id as any);
                   setIsMobileMenuOpen(false);
                 }}
-                className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-xs font-semibold tracking-wide transition-all ${
+                className={`sidebar-nav-item ${
                   isActive
-                    ? 'bg-[#EEF2FF] text-[#4F46E5] font-bold shadow-2xs'
-                    : 'text-[#4B5563] hover:bg-[#F9FAFB] hover:text-[#111827]'
+                    ? 'sidebar-nav-item-active'
+                    : ''
                 }`}
               >
-                <div className="flex items-center space-x-2.5">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#4F46E5]' : 'text-slate-400'}`} />
+                <div className="sidebar-nav-item-label">
+                  <Icon className={`sidebar-nav-item-icon w-4 h-4 ${isActive ? 'text-[#4F46E5]' : 'text-slate-400'}`} />
                   <span>{item.label}</span>
                 </div>
                 {item.badge !== null && (
-                  <span className={`px-2 py-0.2 rounded-md font-bold text-[9px] ${isActive ? 'bg-[#4F46E5]/15 text-[#4F46E5]' : item.badgeColor}`}>
+                  <span className={`sidebar-nav-item-badge ${isActive ? 'sidebar-nav-item-badge-active' : item.badgeColor}`}>
                     {item.badge}
                   </span>
                 )}
