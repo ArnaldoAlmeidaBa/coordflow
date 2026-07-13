@@ -11,6 +11,11 @@ Responder, sem instalar nada ainda, se o Coordena pode evoluir para uma prova de
 - a versao web atual;
 - a arquitetura por contratos ja iniciada.
 
+Premissa operacional consolidada nesta revisao:
+
+- o sistema operacional-alvo da versao instalavel e o Windows;
+- o Linux permanece util para estudo e desenvolvimento, mas nao deve ser tratado como referencia principal de distribuicao para a escola.
+
 Pergunta central desta rodada:
 
 > Podemos criar uma prova de conceito instalavel do Coordena, restrita a Demandas, sem duplicar o projeto e sem comprometer a versao web atual?
@@ -19,9 +24,13 @@ Resposta curta:
 
 > Sim, tecnicamente faz sentido avancar para uma prova de conceito baseada em React + Tauri + SQLite, mas o ambiente atual ainda nao esta pronto para isso e exige preparacao explicita antes de qualquer implementacao.
 
+Refinamento importante:
+
+> a prova de conceito deve ser desenhada para funcionamento real em Windows 10/11, com uso diario por conta padrao, sem depender de privilegios administrativos apos a instalacao.
+
 ---
 
-## 1. Diagnostico do ambiente atual
+## 1. Diagnostico do ambiente atual de estudo
 
 ### Sistema operacional
 
@@ -87,9 +96,48 @@ Leitura:
 
 - ha espaco confortavel para adicionar toolchain, build desktop e artefatos locais de teste.
 
+### Interpretacao correta deste diagnostico
+
+Este levantamento descreve apenas o ambiente Linux atualmente disponivel para estudo local.
+
+Ele nao deve ser confundido com:
+
+- ambiente-alvo de execucao da coordenadora;
+- ambiente definitivo de empacotamento do instalador Windows;
+- evidencia de que o Linux sera a plataforma principal de distribuicao.
+
 ---
 
-## 2. Compatibilidade com o projeto atual
+## 2. Sistema operacional-alvo da prova de conceito
+
+O alvo principal da versao instalavel deve ser:
+
+- Windows 10
+- Windows 11
+
+Condicoes operacionais esperadas:
+
+- execucao diaria por usuario padrao;
+- nenhuma dependencia de permissao administrativa para abrir ou usar o app depois de instalado;
+- banco SQLite no diretorio de dados do proprio usuario;
+- nenhum dado salvo em `Program Files` ou na pasta de instalacao;
+- criacao e atualizacao do banco sem elevacao de privilegios;
+- backup e restauracao em pastas acessiveis ao usuario;
+- preservacao dos dados ao atualizar ou reinstalar;
+- validacao em conta Windows sem privilegios administrativos.
+
+Distincao importante:
+
+- o instalador pode, dependendo do formato, exigir permissao administrativa;
+- isso nao pode virar condicao normal de funcionamento do Coordena no dia a dia.
+
+Possibilidade que merece estudo proprio na proxima rodada:
+
+- instalacao por usuario, dentro do perfil da coordenadora, como alternativa especialmente relevante para ambientes escolares com restricoes de permissao.
+
+---
+
+## 3. Compatibilidade com o projeto atual
 
 ### Stack web atual
 
@@ -125,7 +173,7 @@ Leitura:
 
 ---
 
-## 3. Impacto previsto no repositorio
+## 4. Impacto previsto no repositorio
 
 Estrutura recomendada para a prova de conceito futura:
 
@@ -168,7 +216,7 @@ coordflow/
 
 ---
 
-## 4. Desenho do futuro SQLiteDemandRepository
+## 5. Desenho do futuro SQLiteDemandRepository
 
 ### Contrato atual a ser preservado
 
@@ -239,7 +287,7 @@ Observacao:
 
 ---
 
-## 5. Proposta para o provedor `sqlite`
+## 6. Proposta para o provedor `sqlite`
 
 ### Provedores previstos
 
@@ -290,7 +338,7 @@ Isso evita falsa impressao de persistencia SQLite quando o app estiver rodando n
 
 ---
 
-## 6. Localizacao prevista do banco
+## 7. Localizacao prevista do banco
 
 ### Diretriz
 
@@ -300,21 +348,38 @@ O banco nao deve ficar:
 - dentro do repositorio;
 - em local manual escolhido pelo usuario no primeiro momento.
 
-### Recomendacao para Linux
+### Recomendacao para Windows alvo
 
-Na primeira instalacao alvo em Linux, o caminho deve usar o diretorio de dados do usuario, em padrao XDG.
-
-Exemplo conceitual:
+O caminho conceitual esperado e:
 
 ```text
-~/.local/share/coordena/coordena.db
+Aplicacao:
+C:\Program Files\Coordena\
+
+Dados do usuario:
+C:\Users\<usuario>\AppData\Roaming\Coordena\
 ```
 
-Ou, de forma mais alinhada ao app empacotado:
+Arquivo de banco, de forma conceitual:
+
+```text
+C:\Users\<usuario>\AppData\Roaming\Coordena\coordena.db
+```
+
+Regra obrigatoria:
+
+- a aplicacao deve localizar esse diretorio pelas APIs do sistema operacional expostas pela plataforma desktop;
+- nao deve presumir letra de unidade;
+- nao deve presumir nome de usuario;
+- nao deve escrever caminho fixo manualmente no codigo.
+
+Forma correta de pensar o caminho:
 
 ```text
 <app_data_dir>/coordena.db
 ```
+
+onde `app_data_dir` deve ser resolvido por API oficial da plataforma.
 
 ### Objetivos atendidos
 
@@ -325,7 +390,7 @@ Ou, de forma mais alinhada ao app empacotado:
 
 ---
 
-## 7. Estrategia minima de migracoes
+## 8. Estrategia minima de migracoes
 
 ### Requisito minimo
 
@@ -365,7 +430,7 @@ Migracao inicial:
 
 ---
 
-## 8. Contrato funcional de backup e restauracao
+## 9. Contrato funcional de backup e restauracao
 
 ### Funcoes futuras minimas
 
@@ -421,9 +486,11 @@ Recomendacao conceitual:
 <app_data_dir>/backups/
 ```
 
+No alvo Windows, isso deve corresponder ao diretorio de dados do usuario, e nao a `Program Files`.
+
 ---
 
-## 9. Atualizacao do aplicativo e preservacao dos dados
+## 10. Atualizacao do aplicativo e preservacao dos dados
 
 Separacao necessaria:
 
@@ -452,7 +519,7 @@ Leitura:
 
 ---
 
-## 10. Seguranca local
+## 11. Seguranca local
 
 ### Avaliacao para a primeira prova de conceito
 
@@ -478,7 +545,7 @@ Em computador compartilhado, qualquer pessoa com acesso ao usuario do sistema op
 
 ---
 
-## 11. Menor recorte funcional recomendavel
+## 12. Menor recorte funcional recomendavel
 
 Escopo da prova de conceito futura:
 
@@ -509,9 +576,28 @@ Leitura:
 - esse recorte e pequeno, testavel e coerente com a arquitetura atual;
 - ele reduz risco e permite validar o valor real da persistencia desktop.
 
+### Criterio de validacao operacional da prova de conceito
+
+Fluxo alvo para validacao real em Windows:
+
+```text
+instalar no Windows
+→ abrir como usuario padrao
+→ criar demandas
+→ fechar e reabrir
+→ confirmar persistencia
+→ realizar backup
+→ atualizar a aplicacao
+→ confirmar preservacao dos dados
+```
+
+Regra:
+
+- o uso como administrador nao deve ser aceito como condicao normal de funcionamento.
+
 ---
 
-## 12. Riscos e bloqueios identificados
+## 13. Riscos e bloqueios identificados
 
 ### Bloqueios atuais objetivos
 
@@ -519,6 +605,12 @@ Leitura:
 - `cargo` ausente
 - `pkg-config` ausente
 - bibliotecas Linux tipicas do Tauri nao verificadas
+
+### Bloqueios e perguntas especificas do alvo Windows
+
+- ainda nao foi decidido se o instalador sera gerado diretamente em maquina Windows, por pipeline de CI ou por outra estrategia;
+- ainda nao foi definido se o melhor formato para a escola e instalacao por maquina ou por usuario;
+- ainda nao foi verificado como um Windows institucional sem privilegios administrativos impacta instalacao, atualizacao e restauracao.
 
 ### Riscos arquiteturais
 
@@ -533,9 +625,14 @@ Leitura:
 - usuario confundir reinstalacao do app com perda de dados;
 - ausencia de estrategia de migracao levar a quebras em atualizacoes.
 
+### Risco de estrategia de compilacao
+
+- assumir que compilar no Linux produzira automaticamente o instalador Windows definitivo;
+- isso nao deve ser presumido sem estudo especifico da cadeia de build e empacotamento.
+
 ---
 
-## 13. Recomendacao final
+## 14. Recomendacao final
 
 ### Decisao recomendada
 
@@ -556,6 +653,27 @@ Avancar para a prova de conceito instalavel faz sentido, mas somente apos autori
 3. instalar ou disponibilizar `pkg-config`
 4. verificar bibliotecas Linux exigidas para Tauri
 5. confirmar o bundle id e o diretorio de dados do app
+6. decidir a estrategia de geracao do instalador Windows
+7. validar o cenario real: "como entregar e atualizar o Coordena em um Windows institucional no qual a coordenadora nao e administradora?"
+
+### Proxima rodada recomendada
+
+Nome sugerido:
+
+> Preparar controladamente o ambiente Linux para a prova de conceito Tauri, verificando cada dependencia antes da instalacao.
+
+Mas com separacao explicita entre duas frentes:
+
+1. ambiente Linux de desenvolvimento
+2. ambiente Windows de compilacao, empacotamento e validacao operacional
+
+Essa proxima rodada nao deve assumir que o Linux local sera suficiente para gerar o instalador Windows final.
+
+Antes de qualquer instalacao no Linux, ela deve responder:
+
+- a geracao do instalador Windows sera feita diretamente em uma maquina Windows?
+- sera feita por pipeline de CI?
+- ou por outra estrategia documentada?
 
 ### Conclusao executiva
 
@@ -563,4 +681,4 @@ Avancar para a prova de conceito instalavel faz sentido, mas somente apos autori
 
 Condicao:
 
-> ainda nao neste ambiente, sem antes resolver os prerequisitos tecnicos de compilacao desktop.
+> ainda nao neste ambiente, sem antes resolver os prerequisitos tecnicos e definir com clareza a estrategia de entrega para Windows institucional.
