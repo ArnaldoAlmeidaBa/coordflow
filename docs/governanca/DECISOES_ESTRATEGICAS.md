@@ -108,3 +108,22 @@ Foi criada uma variacao experimental, sutil e reversivel da paleta visual do Coo
 - a mudanca foi isolada em commit proprio para avaliacao;
 - a experiencia pode ser revertida com baixo risco caso nao agrade;
 - a avaliacao deve considerar sensacao de acolhimento, contraste e clareza operacional.
+
+---
+
+## 2026-07-13 - Persistencia desacoplada por contrato no modulo de Demandas
+
+### Decisao
+
+O projeto passa a manter um unico codigo-fonte para versoes local e remota, com separacao inicial entre dominio, aplicacao e infraestrutura no modulo de Demandas.
+
+Foi adotado contrato explicito de repositorio para evitar dependencia direta da interface com `localStorage` ou com qualquer banco especifico.
+
+### Implicacoes
+
+- a tela de Demandas nao depende mais diretamente da tecnologia de armazenamento;
+- `localStorage` passa a ser apenas uma implementacao de infraestrutura;
+- `localStorage` deve ser tratado apenas como etapa provisoria, e nao como decisao definitiva de persistencia local;
+- o projeto fica apto a receber SQLite, API remota ou outro provedor sem duplicar componentes;
+- a migracao arquitetural deve continuar em pequenos modulos, sem reescrever o produto inteiro;
+- a documentacao de apoio desta decisao passa a ser `docs/ARQUITETURA_PERSISTENCIA_UNICA.md`.

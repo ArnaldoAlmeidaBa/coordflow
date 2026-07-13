@@ -22,5 +22,18 @@
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
-  }
+  },
+  "include": [
+    "src",
+    "server.ts",
+    "vite.config.ts"
+  ],
+  "exclude": [
+    "dist",
+    "docs",
+    "node_modules",
+    "node_modules_broken_2026-07-09",
+    "node_modules_incomplete_2026-07-09_1459",
+    ".venv"
+  ]
 }

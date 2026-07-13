@@ -20,10 +20,10 @@ import {
 
 interface MesaCentralProps {
   tasks: PendingTask[];
-  onAddTask: (task: Omit<PendingTask, 'id' | 'createdAt'>) => void;
-  onUpdateTask: (id: string, updates: Omit<PendingTask, 'id' | 'createdAt'>) => void;
-  onToggleTaskStatus: (id: string) => void;
-  onDeleteTask: (id: string) => void;
+  onAddTask: (task: Omit<PendingTask, 'id' | 'createdAt'>) => void | Promise<void>;
+  onUpdateTask: (id: string, updates: Omit<PendingTask, 'id' | 'createdAt'>) => void | Promise<void>;
+  onToggleTaskStatus: (id: string) => void | Promise<void>;
+  onDeleteTask: (id: string) => void | Promise<void>;
   onAddHistory: (title: string, details: string, actionType: any, category: any) => void;
 }
 
@@ -511,5 +511,4 @@ export default function MesaCentral({
     </div>
   );
 }
-
 

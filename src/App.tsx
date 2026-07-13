@@ -12,6 +12,7 @@ import ComunicacaoAssistida from './components/ComunicacaoAssistida';
 import Reunioes from './components/Reunioes';
 import Calendario from './components/Calendario';
 import Historico from './components/Historico';
+import { demandService } from './config/services';
 import coordenaLogoMark from './assets/coordena-logo-mark.png';
 
 // Icons
@@ -49,8 +50,7 @@ export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [themeMode, setThemeMode] = useState<'light' | 'dark'>(() => readStoredState('coordflow_theme', getPreferredTheme()));
 
-  // Unified State with fallback persistence
-  const [tasks, setTasks] = useState<PendingTask[]>(() => readStoredState('coordflow_tasks', INITIAL_TASKS));
+  const [tasks, setTasks] = useState<PendingTask[]>(INITIAL_TASKS);
 
   const [events, setEvents] = useState<CalendarEvent[]>(() => readStoredState('coordflow_events', INITIAL_EVENTS));
 
@@ -58,10 +58,19 @@ export default function App() {
 
   const [historyItems, setHistoryItems] = useState<HistoryItem[]>(() => readStoredState('coordflow_history', INITIAL_HISTORY));
 
-  // Effect triggers on every state modification to synchronize storage
   useEffect(() => {
-    localStorage.setItem('coordflow_tasks', JSON.stringify(tasks));
-  }, [tasks]);
+    let isActive = true;
+
+    void demandService.listDemands().then((loadedTasks) => {
+      if (isActive) {
+        setTasks(loadedTasks);
+      }
+    });
+
+    return () => {
+      isActive = false;
+    };
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('coordflow_events', JSON.stringify(events));
@@ -103,12 +112,8 @@ export default function App() {
   }, []);
 
   // Global Callbacks for actions:
-  const handleAddNewTask = (newTask: Omit<PendingTask, 'id' | 'createdAt'>) => {
-    const task: PendingTask = {
-      ...newTask,
-      id: `t-${Date.now()}`,
-      createdAt: new Date().toISOString().split('T')[0]
-    };
+  const handleAddNewTask = async (newTask: Omit<PendingTask, 'id' | 'createdAt'>) => {
+    const task = await demandService.createDemand(newTask);
     setTasks(prev => [task, ...prev]);
 
     // Simple automatic audit logger
@@ -120,26 +125,28 @@ export default function App() {
     );
   };
 
-  const handleToggleTaskStatus = (id: string) => {
+  const handleToggleTaskStatus = async (id: string) => {
     const target = tasks.find(t => t.id === id);
     if (!target) return;
 
-    const nextStatus = target.status === 'concluido' ? 'pendente' : 'concluido';
+    const updatedTask = await demandService.toggleDemandStatus(id);
+    if (!updatedTask) return;
 
     setTasks(prev => prev.map(t => (
-      t.id === id ? { ...t, status: nextStatus } : t
+      t.id === id ? updatedTask : t
     )));
 
     handleAddNewHistoryItem(
       `Status de Demanda Alterado`,
-      `Tarefa "${target.title}" foi marcada como [${nextStatus === 'concluido' ? 'CONCLUÍDO' : 'PENDENTE'}].`,
-      nextStatus === 'concluido' ? 'tarefa_concluida' : 'geral',
+      `Tarefa "${target.title}" foi marcada como [${updatedTask.status === 'concluido' ? 'CONCLUÍDO' : 'PENDENTE'}].`,
+      updatedTask.status === 'concluido' ? 'tarefa_concluida' : 'geral',
       target.category === 'familia' || target.category === 'professor' ? (target.category as any) : 'sistema'
     );
   };
 
-  const handleDeleteTask = (id: string) => {
+  const handleDeleteTask = async (id: string) => {
     const target = tasks.find(t => t.id === id);
+    await demandService.deleteDemand(id);
     setTasks(prev => prev.filter(t => t.id !== id));
     
     if (target) {
@@ -152,12 +159,14 @@ export default function App() {
     }
   };
 
-  const handleUpdateTask = (id: string, updates: Omit<PendingTask, 'id' | 'createdAt'>) => {
+  const handleUpdateTask = async (id: string, updates: Omit<PendingTask, 'id' | 'createdAt'>) => {
     const target = tasks.find(t => t.id === id);
     if (!target) return;
 
+    const updatedTask = await demandService.updateDemand(id, updates);
+
     setTasks(prev => prev.map(t => (
-      t.id === id ? { ...t, ...updates } : t
+      t.id === id ? updatedTask : t
     )));
 
     handleAddNewHistoryItem(
@@ -228,13 +237,14 @@ export default function App() {
   };
 
   // Completely reset simulation data
-  const handleFullReset = () => {
+  const handleFullReset = async () => {
     if (confirm('Deseja resetar TODOS os dados escolares para as configurações de MVP originais de demonstração? Isso limpará suas edições atuais.')) {
-      setTasks(INITIAL_TASKS);
+      const resetTasks = await demandService.resetDemands(INITIAL_TASKS);
+      setTasks(resetTasks);
       setEvents(INITIAL_EVENTS);
       setMeetings(INITIAL_MEETINGS);
       setHistoryItems(INITIAL_HISTORY);
-      ['coordflow_tasks', 'coordflow_events', 'coordflow_meetings', 'coordflow_history'].forEach((key) => {
+      ['coordflow_events', 'coordflow_meetings', 'coordflow_history'].forEach((key) => {
         localStorage.removeItem(key);
       });
       setActiveTab('mesa');
@@ -306,7 +316,9 @@ export default function App() {
               <ThemeToggleIcon className="w-3.5 h-3.5" />
             </button>
             <button
-              onClick={handleFullReset}
+              onClick={() => {
+                void handleFullReset();
+              }}
               className="flex items-center justify-center gap-1 px-2.5 py-1 rounded-lg border border-[#E5E7EB] text-slate-600 hover:text-[#111827] hover:bg-slate-50 text-[9px] font-semibold uppercase tracking-[0.12em] transition-all bg-white"
             >
               <RefreshCw className="w-3 h-3" />
@@ -450,7 +462,9 @@ export default function App() {
             </button>
 
             <button
-              onClick={handleFullReset}
+              onClick={() => {
+                void handleFullReset();
+              }}
               className="flex items-center justify-center space-x-1 px-2 py-[5px] border border-[#E5E7EB] hover:border-slate-400 rounded-md text-slate-600 hover:text-[#111827] text-[8px] font-semibold uppercase tracking-[0.11em] transition-all bg-white"
             >
               <RefreshCw className="w-2.5 h-2.5" />
@@ -546,6 +560,4 @@ export default function App() {
     </div>
   );
 }
-
-
 
